@@ -1,0 +1,106 @@
+
+Sliding window is another common approach to solving problems related to arrays. 
+A sliding window is actually implemented using two pointers! Before we start, we need to talk about the concept of a subarray.
+
+--- Subarrays
+
+Given an array, a subarray is a contiguous section of the array. 
+All the elements must be adjacent to each other in the original array and in their original order. 
+For example, with the array [1, 2, 3, 4], the subarrays (grouped by length) are:
+
+    Subarrays with length 1: [1], [2], [3], [4]
+    Subarrays with length 2: [1, 2], [2, 3], [3, 4]
+    Subarrays with length 3: [1, 2, 3], [2, 3, 4]
+    Subarrays with length 4: [1, 2, 3, 4]
+
+
+--- "Valid" subarrays
+
+A common pattern you'll see in array problems involves the idea of a "valid" subarray. 
+The problem description will either explicitly or implicitly define what makes a subarray "valid". We can split it into two parts:
+
+    A constraint metric. This is an attribute of a subarray.     
+    - For example, the sum of the subarray, the number of unique elements in the subarray, the frequency of a specific element, etc.
+    A numeric restriction on the constraint metric.
+
+For example, let's say a problem declares a subarray is valid if it has a sum less than or equal to 10. 
+The constraint metric here is the sum of the subarray, and the numeric restriction is <= 10. 
+A subarray is considered valid if its constraint metric conforms to the numeric restriction, i.e., the sum is less than or equal to 10.
+
+
+--- The idea
+
+Sliding window is used to analyze and find the valid subarrays of an array. The idea behind a sliding window is to maintain two variables, left and right. 
+At any given time, left represents the left bound of our window, and right represents the right bound of our window. 
+Remember that "window" here is another word for subarray.
+
+Initially, we set left = right = 0, which means that the first window we consider is just the first element of the array on its own. 
+We want to expand the size of our "window", and we do that by incrementing right. When we increment right, this is like "adding" a new element to our window.
+
+But what if after adding a new element, the subarray becomes invalid? For example, let's say adding a new element on the right makes the sum of the subarray too large. 
+We need to "remove" some elements from our window until it becomes valid again. To "remove" elements, we can increment left, which shrinks our window.
+Remember: left and right represent the bounds of our window at any given time, so incrementing left is equivalent to removing the left-most element.
+
+As we add and remove elements, we are "sliding" our window along the input. 
+The window's size is constantly changing - it grows as large as it can until it's invalid, and then it shrinks until it's valid once more. 
+However, it always slides along to the right until it reaches the end of the input.
+
+--- Solving problems with sliding window
+
+Whenever you see a problem that not only describes subarrays being "valid", but also asks you to find these subarrays, you should immediately think about sliding window.
+
+Often, the problem will ask you to find the best valid subarray. The problem will define what makes one subarray better than another. 
+For example, a problem might ask you to find the longest valid subarray.
+
+Another common type of problem is one that asks you to find the number of valid subarrays. We will take a deeper look at this type of problem later in the article.
+
+Here is a preview of some of the example problems that we will look at in this article, to help you better understand what sliding window problems look like:
+    Find the longest subarray with a sum less than or equal to k (constraint metric = sum)
+    Find the longest substring that has at most one "0" (constraint metric = number of zeroes)
+    Find the number of subarrays that have a product less than k (constraint metric = product)
+
+
+--- Here's some pseudocode that puts it all together:
+
+function fn(nums, k):
+    left = 0
+    curr = 0
+    answer = 0
+    for (int right = 0; right < nums.length; right++):
+        curr += nums[right]
+        while (curr > k):
+            curr -= nums[left]
+            left++
+
+        answer = max(answer, right - left + 1)
+
+    return answer
+
+Here's some pseudocode for a general template:
+
+function fn(arr):
+    left = 0
+    for (int right = 0; right < arr.length; right++):
+        Do some logic to "add" element at arr[right] to window
+
+        while WINDOW_IS_INVALID:
+            Do some logic to "remove" element at arr[left] from window
+            left++
+
+        Do some logic to update the answer
+
+
+In terms of time complexity, any algorithm that looks at every subarray will be at least O(n2)O(n2), which is usually too slow. 
+A sliding window guarantees a maximum of 2n2n window iterations - the right pointer can move nn times and the left pointer can move nn times. 
+This means if the logic done for each window is O(1)O(1), sliding window algorithms run in O(n)O(n), which is much faster.
+
+You may be thinking: there is a while loop inside of the for loop, isn't the time complexity O(n2)O(n2)? 
+The reason it is still O(n)O(n) is that the while loop can only iterate nn times in total for the entire algorithm (left starts at 0, only increases, and never exceeds n). 
+If the while loop were to run n times on one iteration of the for loop, that would mean it wouldn't run at all for all the other iterations of the for loop. 
+This is what we refer to as amortized analysis - even though the worst case for an iteration inside the for loop is O(n)O(n), 
+it averages out to O(1)O(1) when you consider the entire runtime of the algorithm.
+
+
+// Notes
+* The condition will be while curr > k ("while the window is invalid"). 
+  To perform the removals, we do curr -= nums[left] and then increment left in each iteration of the while loop.
