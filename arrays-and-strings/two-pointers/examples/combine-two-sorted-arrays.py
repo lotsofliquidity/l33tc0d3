@@ -1,6 +1,6 @@
 # Example 3: Given two sorted integer arrays arr1 and arr2, return a new array that combines both of them and is also sorted.
 
-def combine(arr1, arr2):
+def combine_two_sorted_arrays(arr1, arr2):
     # ans is the answer
     ans = []
     i = j = 0

@@ -4,9 +4,9 @@
 # nums = [3, 1, 2, 7, 4, 2, 1, 1, 5] and k = 8.
 
 def find_length(nums, k):
-    leftBound = curr = ans = 0
-    for rightBound in range(len(nums)):
-        curr += nums[rightBound]
+    left = curr = ans = 0
+    for right in range(len(nums)):
+        curr += nums[right]
         # [3, 1, 2, 7, 4, 2, 1, 1, 5]
         # [3, 1, 2] - longest so far
         # curr = 6
@@ -18,11 +18,11 @@ def find_length(nums, k):
         while curr > k:
             # [3, 1, 2, 7] > 8
             # Move the left bound up and decrease the curr by the value
-            curr -= nums[leftBound]
-            leftBound += 1
+            curr -= nums[left]
+            left += 1
 
         # for each loop of the for loop, the answer of the longest substring is captured in this ans var
-        ans = max(ans, rightBound - leftBound + 1)
+        ans = max(ans, right - left + 1)
     return ans
 
 result = find_length([3, 1, 2, 7, 4, 2, 1, 1, 5], 8)
