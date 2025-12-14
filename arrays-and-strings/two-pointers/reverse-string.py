@@ -21,7 +21,6 @@
 #     1 <= s.length <= 105
 #     s[i] is a printable ascii character.
 
-
 def reverseString(s):
     left = 0
     right = len(s) - 1
