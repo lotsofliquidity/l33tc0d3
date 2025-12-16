@@ -4,7 +4,6 @@
 #    [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]
 
 # --- This is a different kind of sliding window from what we've done before. ---
-#hehe
 
 def numSubarrayProductLessThanK_v1(nums, k):
     if k <= 1: # if value 1 then would loop forever because curr >= k would never be false
