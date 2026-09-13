@@ -28,6 +28,10 @@ all nine weeks, and it is what feeds the W09 action *"Re-solve your 6 worst
 **In the 🧮 block (07:00–08:00, every day):** solve → if it went wrong, one line here
 → close the file. Ten seconds. Write the *reason*, not an essay and not the wrong answer.
 
+**Cursor will remind you.** At the start of `/course-companion` or `/interview-companion`
+sessions, due revisits (Revisit due ≤ today) are listed so you can cold re-solve them
+before new work. You can also ask: "What's due to revisit?"
+
 **This file outlives the 9 weeks.** It carries into the optional tail (Part 5 of
 `APP-ENTRY.md`) and is what you re-read before an interview.
 
