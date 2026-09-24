@@ -53,4 +53,4 @@ Add new chapter folders as you reach them (trees, graphs, binary-search, dp, …
 
 ## Mistakes
 
-Bad practice solves get a row in [`../MISTAKES.md`](../MISTAKES.md). Clean solves write nothing. Revisit open entries after 14 days.
+Bad practice solves get a row in [`../MISTAKES.md`](../MISTAKES.md). Clean solves write nothing. Cold-revisit open entries after 7 days (practice sooner with notes if you couldn't finish).

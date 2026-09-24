@@ -19,4 +19,4 @@ Due revisits (cold re-solve — no notes/hints first):
 
 5. Ask: revisit one now, or continue with what they came for?
 6. If none due: say nothing about revisits (don't spam "all clear").
-7. After a successful cold revisit: set that row to `PASSED` and move it to **Closed entries**. If they fail again: `RECURRED`, new revisit due = today + 14 days; keep/re-log per `MISTAKES.md` rules.
+7. After a successful cold revisit: set that row to `PASSED` and move it to **Closed entries**. If they fail again: `RECURRED`, new revisit due = today + 7 days; keep/re-log per `MISTAKES.md` rules.

@@ -15,15 +15,15 @@ Log a row when any of these is true:
 - you passed, but only after a wrong first approach
 - it took far longer than it should have (>2× your estimate)
 - you couldn't explain **why** it works after it passed
-- you failed a **+14-day revisit** — re-log it with a new date; don't edit the old row
+- you couldn't finish / needed the solution walked through
+- you failed a **+7-day cold revisit** — set a new due date; don't delete the lesson
 
 **Do not add a row when** you solved it clean, in time, and could talk through it.
 63 entries is a diary. ~15–25 entries is a study tool.
 
-**The date is the mechanism, not admin.** An entry is not closed until you have
-**re-solved it successfully 14 days later**. That is what keeps this file live across
-all nine weeks, and it is what feeds the W09 action *"Re-solve your 6 worst
-`MISTAKES.md` entries"* (2 h).
+**Two moves (keep it simple):**
+1. **Soon** — if you couldn't finish, practice that pattern again within a few days (notes OK). Don't wait a week to touch it.
+2. **Cold due (+7 days)** — re-solve with no notes/hints. Pass → `PASSED` + Closed. Fail → `RECURRED`, new due = today + 7.
 
 **In the 🧮 block (07:00–08:00, every day):** solve → if it went wrong, one line here
 → close the file. Ten seconds. Write the *reason*, not an essay and not the wrong answer.
@@ -44,7 +44,7 @@ Date logged  : 2026-09-16
 Problem      : K Radius Subarray Averages
 Chapter      : Arrays and strings
 Went wrong   : Built a fresh window sum each step instead of reusing it — O(n·k).
-Revisit due  : 2026-09-30
+Revisit due  : 2026-09-23
 Status       : OPEN
 ```
 
@@ -54,7 +54,7 @@ Problem      : Max Consecutive Ones III
 Chapter      : Arrays and strings
 Went wrong   : Couldn't state the sliding-window invariant out loud — knew the
                mechanic but not why shrinking on failure is safe.
-Revisit due  : 2026-09-30
+Revisit due  : 2026-09-23
 Status       : OPEN
 ```
 
@@ -67,7 +67,14 @@ re-solve the problem — you don't read it back to yourself.
 
 | # | Date logged | Problem | Chapter | Went wrong | Revisit due | Status |
 |---|---|---|---|---|---|---|
-| | | | | | | |
+| 2 | 2026-09-17 | Maximum Average Subarray I | Sliding window | Fixed-window attempt: `nums[k]` instead of `nums[i]` in build; slide used stale `i` not `right`; compared sum to average. Cold revisit 2026-09-24: looked up solution — pattern forgotten. | 2026-10-01 | RECURRED |
+| 3 | 2026-09-18 | Max Consecutive Ones III | Sliding window | Window logic OK, but compared to `'0'` (string) on an int array — `curr` never counted zeros, so answer was full length. | 2026-09-25 | OPEN |
+| 4 | 2026-09-20 | K Radius Subarray Averages | Prefix sum | Couldn't finish — need window i-k..i+k (size 2k+1), -1 near edges; range sum via prefix (or slide fixed window), not re-sum each center. | 2026-09-27 | OPEN |
+| 5 | 2026-09-20 | Reverse Words in a String III | Two pointers / strings | Misread: reversed entire string instead of each word while keeping word order. | 2026-09-27 | OPEN |
+| 6 | 2026-09-20 | Is Subsequence | Two pointers | Right idea; `j[t]` typo and only advancing `j` on mismatch — must use `t[j]` and always scan `t`. | 2026-09-27 | OPEN |
+| 7 | 2026-09-22 | Check if the Sentence Is Pangram | Hashing | Knew set was the right tool; had to look up how to create/add (`set()`, `.add`). | 2026-09-29 | OPEN |
+| 8 | 2026-09-22 | Missing Number | Hashing | Sought neighbor gaps (`num±1`) instead of the missing value in `[0, n]`; breaks when `0` is present (returns `-1`). | 2026-09-29 | OPEN |
+| 9 | 2026-09-24 | Counting Elements | Hashing | Reused Missing Number loop; indexed a set; returned early instead of counting each `x` where `x+1` exists. | 2026-10-01 | OPEN |
 | | | | | | | |
 | | | | | | | |
 | | | | | | | |
@@ -78,7 +85,7 @@ re-solve the problem — you don't read it back to yourself.
 | | | | | | | |
 | | | | | | | |
 
-**Status values:** `OPEN` · `PASSED` (re-solved clean at the revisit) · `RECURRED` (failed the revisit — set a new `Revisit due` 14 days out)
+**Status values:** `OPEN` · `PASSED` (re-solved clean at the cold revisit) · `RECURRED` (failed the revisit — set a new `Revisit due` 7 days out)
 
 ---
 
@@ -88,7 +95,7 @@ Move a row here once it's `PASSED`. Keep them — the tally is your progress mea
 
 | # | Problem | Chapter | First logged | Closed | Notes |
 |---|---|---|---|---|---|
-| | | | | | |
+| 1 | Squares of a Sorted Array | Two pointers | 2026-09-16 | 2026-09-20 | Interview re-solve; backward fill + `<=` |
 
 ---
 

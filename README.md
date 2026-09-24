@@ -39,7 +39,7 @@ course/                  # course follow-along
   hashing/
 interview/               # interview simulations
   solutions/             # date-stamped interview attempts
-MISTAKES.md              # shared error log (+14 day revisits)
+MISTAKES.md              # shared error log (+7 day cold revisits)
 .cursor/skills/
   interview-companion/
   course-companion/

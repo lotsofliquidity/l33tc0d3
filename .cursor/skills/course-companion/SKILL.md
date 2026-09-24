@@ -109,7 +109,7 @@ Infer `<chapter>` from context (open files, topic, prior messages). Examples: `a
 
 ### Session start — due revisits
 
-Before other course work, read `MISTAKES.md` Open entries. If any `OPEN`/`RECURRED` row has **Revisit due ≤ today**, list them and offer a cold re-solve first (no notes/hints). On success → `PASSED` + move to Closed. On fail → `RECURRED`, revisit due = today + 14.
+Before other course work, read `MISTAKES.md` Open entries. If any `OPEN`/`RECURRED` row has **Revisit due ≤ today**, list them and offer a cold re-solve first (no notes/hints). On success → `PASSED` + move to Closed. On fail → `RECURRED`, revisit due = today + 7.
 
 If none due, skip this (don't announce "all clear").
 
@@ -117,11 +117,11 @@ If none due, skip this (don't announce "all clear").
 
 After practice (or when they say it went wrong): **clean solves write nothing.**
 
-Log when: hint/editorial/looked up pattern; wrong first approach; way too slow; couldn't explain *why* after passing.
+Log when: hint/editorial/looked up pattern; wrong first approach; way too slow; couldn't explain *why* after passing; couldn't finish.
 
 1. Read `MISTAKES.md` → Open entries table.
-2. Append one row: next `#`, today, problem, chapter, short *went wrong* reason (not the solution), revisit = today + 14 days, `OPEN`.
-3. One-line confirmation.
+2. Append one row: next `#`, today, problem, chapter, short *went wrong* reason (not the solution), revisit = today + **7** days, `OPEN`.
+3. One-line confirmation. If they couldn't finish: remind them to practice that pattern again in a few days (notes OK) — don't only wait for the cold due date.
 
 ## Tone
 

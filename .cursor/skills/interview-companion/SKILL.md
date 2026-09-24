@@ -126,14 +126,14 @@ Log when **any** of these happened in the session:
 
 Do **not** log when they solved cleanly, explained well, used no hints, and earned Hire or Strong Hire.
 
-If today's problem was a **due revisit** from `MISTAKES.md`: after Feedback, update that row (`PASSED` + Closed on a clean solve; `RECURRED` + new +14 due if it went badly again).
+If today's problem was a **due revisit** from `MISTAKES.md`: after Feedback, update that row (`PASSED` + Closed on a clean solve; `RECURRED` + new +7 due if it went badly again).
 
 When logging:
 
 1. Read `MISTAKES.md` and find the **Open entries** table.
 2. Append one new row (next `#`), matching existing columns.
 3. Keep `Went wrong` to one short reason — the *mistake*, not the correct solution.
-4. Set `Revisit due` to date logged + 14 days. Status: `OPEN`.
+4. Set `Revisit due` to date logged + 7 days. Status: `OPEN`.
 5. Infer `Chapter` from the problem pattern (e.g. Arrays and strings, Hashing, Two pointers / sliding window, Trees, Graphs, Binary search, DP). Use `Interview` only if unclear.
 6. Briefly tell them you logged it (one line). Do not paste the whole table.
 
