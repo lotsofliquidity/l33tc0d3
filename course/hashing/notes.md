@@ -58,4 +58,5 @@ Need a list as a key → `tuple(arr)` (or a delimiter string if elements can't c
 ## Related
 - Array when keys are dense integers in a known range (less overhead)
 - Sorted map / tree map (e.g. C++ `std::map`) when you need order — not a hash map
-- Next in chapter: counting, checking complements (Two Sum-style), grouping
+- **Counting** (frequencies, multi-key windows, exact subarrays): `course/hashing/counting/notes.md`
+- Next: checking complements (Two Sum-style), grouping

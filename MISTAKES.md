@@ -68,7 +68,7 @@ re-solve the problem — you don't read it back to yourself.
 | # | Date logged | Problem | Chapter | Went wrong | Revisit due | Status |
 |---|---|---|---|---|---|---|
 | 2 | 2026-09-17 | Maximum Average Subarray I | Sliding window | Fixed-window attempt: `nums[k]` instead of `nums[i]` in build; slide used stale `i` not `right`; compared sum to average. Cold revisit 2026-09-24: looked up solution — pattern forgotten. | 2026-10-01 | RECURRED |
-| 3 | 2026-09-18 | Max Consecutive Ones III | Sliding window | Window logic OK, but compared to `'0'` (string) on an int array — `curr` never counted zeros, so answer was full length. | 2026-09-25 | OPEN |
+| 3 | 2026-09-18 | Max Consecutive Ones III | Sliding window | First: compared zeros to `'0'` on ints. Cold 2026-09-25: shrink only moves `left` when `nums[left]==0`, so a 1 under `left` while `curr > k` loops forever. | 2026-10-02 | RECURRED |
 | 4 | 2026-09-20 | K Radius Subarray Averages | Prefix sum | Couldn't finish — need window i-k..i+k (size 2k+1), -1 near edges; range sum via prefix (or slide fixed window), not re-sum each center. | 2026-09-27 | OPEN |
 | 5 | 2026-09-20 | Reverse Words in a String III | Two pointers / strings | Misread: reversed entire string instead of each word while keeping word order. | 2026-09-27 | OPEN |
 | 6 | 2026-09-20 | Is Subsequence | Two pointers | Right idea; `j[t]` typo and only advancing `j` on mismatch — must use `t[j]` and always scan `t`. | 2026-09-27 | OPEN |
