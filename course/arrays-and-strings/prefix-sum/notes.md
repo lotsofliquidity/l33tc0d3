@@ -7,7 +7,7 @@ Precompute running totals so any subarray sum `nums[i..j]` can be answered in O(
 1. Build running totals → `prefix[i]` = sum through index `i`.
 2. Sum of `x..y` → sum through `y`, minus sum before `x`.
 3. “Left vs rest” → left = `prefix[i]`, right = `total - left` (stop before empty right).
-4. **K-radius average:** center `i` needs `i-k..i+k` (len `2k+1`) or `-1`; sum via prefix, `// (2k+1)`.
+4. **K-radius average:** center `i` needs `i-k..i+k` (len `2k+1`) or `-1`; sum via prefix, `// (2k+1)`. Plain version (prefix through `i`): `examples/k-radius-subarray-averages-plain.py`.
 5. Cost: O(n) build, O(1) per range; array is O(n) space (running left can be O(1)).
 
 ## When to use it
@@ -72,6 +72,8 @@ Still a prefix-sum *idea*, just O(1) extra space (e.g. ways to split array).
 - **Min start value so running sum ≥ 1:** deepest dip = `min(prefix)`; need `startValue ≥ 1 - min_prefix`, and at least 1 → `max(1, 1 - min_prefix)`
 
 ## Tiny example
+K-radius, `nums = [7,4,3,9,1,8,5,2,6]`, `k = 3`. One answer per index. Center `i` averages indexes `i-3 .. i+3` (7 numbers) or `-1` if that slice falls off either end. Only centers 3, 4, 5 fit, so the answer is `[-1,-1,-1, 5,4,4, -1,-1,-1]`.
+
 `nums = [5, 2, 1, 6, 3, 8]`  
 `prefix = [5, 7, 8, 14, 17, 25]`
 

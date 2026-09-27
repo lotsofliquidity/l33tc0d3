@@ -69,6 +69,7 @@ for x in nums:
 - Forgetting `counts[0] = 1` drops subarrays that start at index 0
 - With negatives/zeros, the same prefix can appear many times — need a **map**, not a set
 - When shrinking a window, **delete** keys at count 0 or `len(counts)` is wrong
+- "Zero losses" is still a count you must store. With `defaultdict(int)`, `losses[winner] += 0` records a new winner and leaves an existing loss count unchanged. `losses[winner] = 0` on every win erases earlier losses.
 
 ## Tiny example
 `nums = [1, 2, 1, 2, 1]`, `k = 3` (subarray sum = k):
