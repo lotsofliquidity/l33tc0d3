@@ -87,6 +87,49 @@ If the array were unsorted, those ends wouldn’t mean “largest magnitudes,”
 
 Same idea for the less common forward-fill merge (find the first non-negative, walk outward taking the **smaller** square): that also depends on negatives left / non-negatives right, which only holds when the input is sorted.
 
+## Length vs last index
+
+`len(s)` is a count. The last valid index is `len(s) - 1`. Subtract 1 only when the number has to name a position.
+
+`for i in range(len(s))` already visits `0` through `len(s) - 1`. Inside that loop the last character is `i == len(s) - 1`. The test `i == len(s)` never fires.
+
+Two different ends:
+
+| Kind | Value | Use |
+|------|--------|-----|
+| Inclusive last character | an index | two-pointer reverse: `l, r = start, end`, `while l < r` |
+| Exclusive end (a slice) | one past the last character | `s[left:right]` — a space at `i` means the word is `s[left:i]`; the last word is `s[left:len(s)]` |
+
+On a space at `i`, the last letter of the word is `i - 1` and the next word starts at `i + 1`. After the scan, the last word runs through `len(s) - 1`.
+
+Keep `n = len(s)` meaning the length. If you instead store `n = len(s) - 1` and then write `range(n)`, the last character is skipped.
+
+A new list of length `right - left` only has indexes `0` through `right - left - 1`. Those indexes are not positions in the original string. `arr[left]` or `arr[right]` on that list raises `IndexError` — this is what broke Reverse Words III on 2026-09-29 (`reverseString(0, 2)` built a list of length 2 and wrote index `2`, the space).
+
+```python
+def reverse_words(s: str) -> str:
+    chars = list(s)  # a Python str cannot be swapped in place
+    n = len(chars)
+
+    def reverse(l, r):  # inclusive ends
+        while l < r:
+            chars[l], chars[r] = chars[r], chars[l]
+            l += 1
+            r -= 1
+
+    start = 0
+    for i in range(n):
+        if chars[i] == " ":
+            reverse(start, i - 1)
+            start = i + 1
+    reverse(start, n - 1)
+    return "".join(chars)
+```
+
+`"Mr Ding"`: space at `2` → `reverse(0, 1)` makes `"rM Ding"`, `start = 3`. After the loop, `reverse(3, 6)` makes `"rM gniD"`.
+
+Time is `O(n)`. In Python the character list is `O(n)` extra. The swaps on that list use a handful of indexes.
+
 ## Complexity
 - Time: O(n) for one array; O(n + m) for two — if each iteration is O(1)
 - Space: O(1) extra (ignore output array when building a merge)
@@ -98,6 +141,7 @@ Same idea for the less common forward-fill merge (find the first non-negative, w
 - Assuming pointers must start at 0 and n−1 — some problems need different starts
 - **Building a new sorted array from ends (sorted squares):** pre-size `arr = [0] * n` and fill from `index = n - 1` (largest square first). An empty `[]` + append, or fill from index 0, puts big values in the wrong place.
 - **`left < right` vs `left <= right`:** palindrome can stop at the middle; sorted-squares must place *every* element → use `<=` or you leave a hole (often a leftover `0` from init that looks “fine” on lucky cases).
+- **`len(s)` vs `len(s) - 1`:** length is the count and the exclusive end; last index is `len(s) - 1`. Inside `range(len(s))`, `i == len(s)` never happens. A word-sized list cannot be indexed with positions from the original string. See **Length vs last index**.
 
 ## Tiny example
 Sorted two-sum: `nums = [1, 2, 4, 6, 8, 9, 14, 15]`, `target = 13`
