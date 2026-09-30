@@ -19,6 +19,10 @@ Initialize **`counts[0] = 1`** (empty prefix) so subarrays starting at index 0 a
 
 Same code shape for “exactly k odds”: let `curr` count odds (`x % 2`) instead of sum.
 
+**Longest length, not a count** (equal 0s and 1s): turn `0` into `-1` and leave `1` as `+1`. A balanced stretch has sum `0`, so the same balance shows up twice. Store the **first index** of each balance (not a frequency) in a `defaultdict(int)`. Length is `i - first_index`. Seed `seen[0] = -1` so a balanced prefix from index 0 has length `i + 1`. Check `balance in seen` before reading; the default `0` is a real index, so a missing key must not be treated as “seen at 0”. Do not overwrite a balance you have already seen; the earlier index makes a longer stretch.
+
+Recall, in order: equal counts cancel (`0 → -1`) → same running score twice means the middle sums to 0 → you want length, so save the **earliest** index → empty score `0` starts at `-1`.
+
 ## Pattern / template
 
 **Frequency build**
@@ -63,6 +67,7 @@ for x in nums:
 - Equal frequencies / subarray sum = k: time & space **O(n)** (or O(alphabet) if keys bounded)
 
 ## Pitfalls
+- Hashing problems use `defaultdict` or `set`. A plain `{}` is the wrong default (`d[k] += 1` raises `KeyError`).
 - One-element window constraint → a single `curr` int is enough; map when many keys matter
 - Array-as-count for integer keys wastes space if range is huge/sparse — prefer a map
 - Exact (== k) ≠ at-most: don’t use plain “expand while valid” window counting for exact
@@ -70,6 +75,8 @@ for x in nums:
 - With negatives/zeros, the same prefix can appear many times — need a **map**, not a set
 - When shrinking a window, **delete** keys at count 0 or `len(counts)` is wrong
 - "Zero losses" is still a count you must store. With `defaultdict(int)`, `losses[winner] += 0` records a new winner and leaves an existing loss count unchanged. `losses[winner] = 0` on every win erases earlier losses.
+- Equal 0s and 1s is a **length**, so the map stores the first index of a balance (`0 → -1`, `1 → +1`), not how many times that balance appeared. Overwriting the index shortens the answer.
+- `first[balance] is not None` does not test “unseen” on `defaultdict(int)`. A missing key comes back as `0`, and that lookup stores `0`. Use `balance in first`.
 
 ## Tiny example
 `nums = [1, 2, 1, 2, 1]`, `k = 3` (subarray sum = k):
@@ -89,3 +96,10 @@ Four subarrays; empty-prefix init is why the first `[1,2]` is found.
 - Chapter intro: `course/hashing/notes.md` (maps/sets basics)
 - Sliding window “at most / less than” (positive metrics) — chapter 1; here for **exact** use prefix+count
 - Two Sum: lock `num`, seek `target - num` → here lock `curr`, seek `curr - k`
+
+## Course examples
+- At most k distinct: [longest-substring-at-most-k-distinct.py](examples/longest-substring-at-most-k-distinct.py)
+- In every list (count == n): [intersection-of-multiple-arrays.py](examples/intersection-of-multiple-arrays.py)
+- All frequencies equal (set of counts has size 1): [check-equal-occurrences.py](examples/check-equal-occurrences.py)
+- Subarray sum == k: [subarray-sum-equals-k.py](examples/subarray-sum-equals-k.py) — trace above is this problem
+- Exactly k odds: [count-number-of-nice-subarrays.py](examples/count-number-of-nice-subarrays.py) — same loop, `curr` counts odds

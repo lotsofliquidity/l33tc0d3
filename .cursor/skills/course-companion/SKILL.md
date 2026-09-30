@@ -63,27 +63,19 @@ Keep notes tight enough to re-read in under 2 minutes before a session. Prefer c
 
 ### B. They paste an example problem
 
-1. Save a worked file under `course/<chapter>/examples/<kebab-name>.py` (problem statement as a short module docstring; solution only after they've engaged — see below).
+1. Save the course's implementation under `course/<chapter>/examples/<kebab-name>.py` **exactly as written** in the article (same class or function, same lines). Do not restyle it.
 2. Help them **understand first**, code second:
    - Restate the problem in one sentence
    - What makes it fit this chapter's pattern?
    - Brute force vs intended approach (high level)
-3. If they want to attempt it: let them try (create `practice/YYYY-MM-DD-ProblemName.py` stub if useful). Review their thinking; fill or refine the `examples/` file once the approach is clear.
-4. If they want a walkthrough: explain with a tiny trace, then show clean code in `examples/`.
+3. If they want to attempt it: let them try (create `practice/YYYY-MM-DD-ProblemName.py` stub if useful). Leave the stub as their attempt. The `examples/` file is the article copy.
+4. If they want a walkthrough: explain with a tiny trace, then show the article code in `examples/`.
 
-**Example file shape:**
+**Example file:** the article's code, unchanged. A short module docstring is fine. Do not rewrite it into a different shape.
 
-```python
-"""
-Problem: <Title>
-Chapter: <e.g. Sliding window>
-Source: course example
+### B2. They finished an exercise, or they need the solution
 
-Idea: <one-liner>
-"""
-
-# clean reference solution
-```
+Write the solution in the **same style as the article examples in that chapter**: `class Solution` when the articles use it, `defaultdict` / `set` the same way, `ans = max(...)` when the articles do. Put it in their `practice/` file. Also save that same code under `examples/` if a course copy does not already exist. Do not replace an existing article copy with a restyled version.
 
 ### C. They don't understand / are stuck
 
@@ -95,6 +87,15 @@ Default to **Socratic → then direct**:
 4. Update `notes.md` with a short **Pitfalls** or **Tiny example** addition when the confusion is likely to recur.
 5. Check understanding: have them restate the invariant or walk the tiny example themselves.
 
+### D. ~10 minutes, no progress
+
+If they say it has been about 10 minutes and they haven't progressed (or anything close: "stuck for 10 minutes", "still no progress"):
+
+1. End the problem. No more nudges.
+2. Give the solution: idea, short trace, working code in their `practice/` file, written in the same style as the article examples in that chapter. Do not restyle an existing article copy. Add an `examples/` file only if the course did not already provide one, using that same style. Run the problem's examples. Add or update the `SOLUTIONS.md` row.
+3. Log `MISTAKES.md` (couldn't finish in ~10 minutes — needed the solution; revisit = today + 7; `OPEN`, or `RECURRED` if this was a due revisit). One-line confirmation with the due date.
+4. Stop.
+
 ## Files
 
 | Kind | Path |
@@ -102,6 +103,9 @@ Default to **Socratic → then direct**:
 | Chapter notes | `course/<chapter>/notes.md` |
 | Worked examples | `course/<chapter>/examples/<kebab-name>.py` |
 | Their attempts | `course/<chapter>/practice/YYYY-MM-DD-ProblemName.py` |
+| Index of checked answers | `SOLUTIONS.md` |
+
+When you save an article copy or an exercise solution under `examples/`, add one row to `SOLUTIONS.md`. Article copies stay exact. Exercise solutions match the article style. Do not point a row at a `practice/` attempt or an `interview/solutions/` attempt.
 
 Infer `<chapter>` from context (open files, topic, prior messages). Examples: `arrays-and-strings/two-pointers`, `arrays-and-strings/sliding-window`, `hashing`.
 
@@ -112,6 +116,8 @@ Infer `<chapter>` from context (open files, topic, prior messages). Examples: `a
 Before other course work, read `MISTAKES.md` Open entries. If any `OPEN`/`RECURRED` row has **Revisit due ≤ today**, list them and offer a cold re-solve first (no notes/hints). On success → `PASSED` + move to Closed. On fail → `RECURRED`, revisit due = today + 7.
 
 If none due, skip this (don't announce "all clear").
+
+Also read **Up next**. After the due list (or first, if none are due), name each parked problem and its stub in one line and ask whether to start one. Delete that row once they start the problem. These are skips, not mistakes.
 
 ### After practice — new entries
 

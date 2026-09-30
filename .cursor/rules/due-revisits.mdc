@@ -20,3 +20,4 @@ Due revisits (cold re-solve — no notes/hints first):
 5. Ask: revisit one now, or continue with what they came for?
 6. If none due: say nothing about revisits (don't spam "all clear").
 7. After a successful cold revisit: set that row to `PASSED` and move it to **Closed entries**. If they fail again: `RECURRED`, new revisit due = today + 7 days; keep/re-log per `MISTAKES.md` rules.
+8. Also read **Up next**. On a course session, after the due list (or first, if none are due), name each parked problem and its stub in one line. Ask whether to start one. Do not mention Up next during a mock interview. Delete that row once they start the problem.

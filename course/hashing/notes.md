@@ -11,6 +11,12 @@ Hash maps give O(1) key → value lookup by turning any (immutable) key into an 
 ## Pre-coding check
 If your algorithm would do `if x in some_list` (or keep scanning a collection for membership), store those elements in a **hash map or set** so those ops are average **O(1)** instead of O(n).
 
+On a hashing problem, the container is `defaultdict` or `set`:
+- Need a value for each key (count, index, list of items) → `defaultdict`
+- Only “have I seen this?” → `set`
+
+Do not start from a plain `{}`. A missing key then raises `KeyError` on `d[k] += 1` or `d[k]`.
+
 ## Core idea / invariant
 A **hash function** maps a key → integer in `[0, size)`, deterministically. Pair that with an array → **hash map**: keys to values, not indices to values.
 
@@ -19,13 +25,15 @@ A **hash function** maps a key → integer in `[0, size)`, deterministically. Pa
 - Map ops are O(1) *relative to map size* `n`. Hashing a string of length `m` is O(m).
 
 ## Pattern / template
-Python dict / set:
+`defaultdict` or `set` — not a plain dict:
 
 ```python
-d = {}                    # or {k: v, ...}
-d[key] = value            # insert or update
+from collections import defaultdict
+
+d = defaultdict(int)      # or defaultdict(list)
+d[key] += 1               # missing key starts at 0
 key in d                  # exists?
-val = d[key]              # access (KeyError if missing)
+val = d[key]
 del d[key]                # remove (must exist)
 len(d)
 for k, v in d.items(): ...
@@ -43,6 +51,7 @@ Need a list as a key → `tuple(arr)` (or a delimiter string if elements can't c
 - Space: O(n) stored entries; tables often over-allocate → more memory than a tight array
 
 ## Pitfalls
+- Starting from `{}` instead of `defaultdict` or `set`
 - Treating O(1) as "free" on tiny inputs — hash overhead can lose to a simple array/scan
 - Using a **set** when you need **counts** (sets ignore duplicates; use a dict/Counter)
 - Mutating a list and expecting it to stay a valid key — convert to `tuple` first
@@ -60,3 +69,4 @@ Need a list as a key → `tuple(arr)` (or a delimiter string if elements can't c
 - Sorted map / tree map (e.g. C++ `std::map`) when you need order — not a hash map
 - **Counting** (frequencies, multi-key windows, exact subarrays): `course/hashing/counting/notes.md`
 - Next: checking complements (Two Sum-style), grouping
+- Article copies: [two-sum.py](examples/two-sum.py), [find-players-with-zero-or-one-losses.py](examples/find-players-with-zero-or-one-losses.py), [group-anagrams.py](examples/group-anagrams.py)

@@ -7,7 +7,7 @@ Two separate processes live in this repo. Use the matching skill so the agent do
 | **Interview** | [`interview/`](interview/) | `/interview-companion` | Timed mock interviews, no teaching, hiring-signal feedback |
 | **Course** | [`course/`](course/) | `/course-companion` | Follow-along study for the LeetCode DS&A course — notes, examples, practice |
 
-Shared across both: [`MISTAKES.md`](MISTAKES.md) (log only when something went wrong).  
+Shared across both: [`MISTAKES.md`](MISTAKES.md) (log only when something went wrong) and [`SOLUTIONS.md`](SOLUTIONS.md) (checked reference for each problem).  
 Due revisits are flagged automatically at the start of a course or interview session.
 
 ---
@@ -40,6 +40,7 @@ course/                  # course follow-along
 interview/               # interview simulations
   solutions/             # date-stamped interview attempts
 MISTAKES.md              # shared error log (+7 day cold revisits)
+SOLUTIONS.md             # index of checked correct solutions
 .cursor/skills/
   interview-companion/
   course-companion/

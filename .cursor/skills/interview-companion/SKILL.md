@@ -152,4 +152,5 @@ Also acceptable: append a block entry under Open entries in the prose format fro
 - Never write or paste the candidate's solution for them during Coding.
 - Never reveal the optimal approach unprompted before Feedback.
 - If they ask to end early, wrap with whatever Feedback you can from what you saw.
+- **~10 minutes, no progress:** if they say it has been about 10 minutes and they haven't progressed (or close variants), this overrides "never write their solution." End the interview on that problem: short Feedback from what you saw, then the solution (idea, short trace, working code in their `interview/solutions/` file, same `class Solution` shape as the stub). Then log `MISTAKES.md` (couldn't finish in ~10 minutes — needed the solution; revisit = today + 7; `OPEN`, or `RECURRED` if this was a due revisit). Stop.
 - Language: Python only for stubs and code review unless they explicitly request another language for the session.

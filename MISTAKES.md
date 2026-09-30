@@ -58,8 +58,8 @@ Revisit due  : 2026-09-23
 Status       : OPEN
 ```
 
-Note what is **not** in there: the correct solution. If you need the solution you
-re-solve the problem — you don't read it back to yourself.
+Note what is **not** in there: the correct solution. Checked answers are indexed in
+[`SOLUTIONS.md`](SOLUTIONS.md). On a cold revisit, re-solve first — don't open that file until the attempt is over.
 
 ---
 
@@ -78,6 +78,7 @@ re-solve the problem — you don't read it back to yourself.
 | 10 | 2026-09-28 | Find Players With Zero or One Losses | Hashing | Needed a walkthrough — counted the match/win instead of losses, and did not keep 0 as a real count. | 2026-10-05 | OPEN |
 | 11 | 2026-09-29 | Largest Unique Number | Hashing | Counted frequencies after a descending sort, then returned -1 on the first repeated number instead of scanning for the next count of 1. | 2026-10-06 | OPEN |
 | 12 | 2026-09-29 | Maximum Number of Balloons | Hashing | Took the min raw count of balloon letters that appeared, so a missing letter was ignored and `l`/`o` were not divided by 2. | 2026-10-06 | OPEN |
+| 13 | 2026-09-30 | Contiguous Array | Hashing | Couldn't finish. Mapped an index to a contribution instead of a running score to the first index where that score appeared. | 2026-10-07 | OPEN |
 | | | | | | | |
 | | | | | | | |
 | | | | | | | |
@@ -89,6 +90,16 @@ re-solve the problem — you don't read it back to yourself.
 | | | | | | | |
 
 **Status values:** `OPEN` · `PASSED` (re-solved clean at the cold revisit) · `RECURRED` (failed the revisit — set a new `Revisit due` 7 days out)
+
+---
+
+## Up next
+
+Parked before an attempt. Not a mistake. Removed when you start the stub.
+
+| Problem | Chapter | Stub | Parked |
+|---|---|---|---|
+| Group Anagrams | Hashing | [2026-10-01-GroupAnagrams.py](course/hashing/practice/2026-10-01-GroupAnagrams.py) | 2026-10-01 |
 
 ---
 
