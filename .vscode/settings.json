@@ -8,5 +8,12 @@
   "editor.parameterHints.enabled": true,
   "editor.wordBasedSuggestions": "currentDocument",
   "editor.inlineSuggest.enabled": true,
-  "cursor.completions.enabled": true
+  "cursor.completions.enabled": true,
+  "chat.useAgentsMdFile": true,
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "python.analysis.diagnosticMode": "openFilesOnly",
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  }
 }

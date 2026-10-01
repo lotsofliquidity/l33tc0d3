@@ -8,18 +8,19 @@ Solutions go in `solutions/`. Do not put course notes or chapter examples here.
 
 ## Setup — Turn Off Autocomplete
 
-For realistic practice, turn off helpers while interviewing:
+For realistic practice, turn off helpers while interviewing.
 
-1. Click **Tab** in the status bar → disable / snooze, or Command Palette → **Disable Cursor Tab**
-2. Workspace settings already tone down IntelliSense (see `.vscode/settings.json`)
+**Cursor:** click **Tab** in the status bar → disable / snooze, or Command Palette → **Disable Cursor Tab**.
 
-Re-enable Tab when you switch back to course study.
+**VS Code:** click the Copilot icon in the status bar → **Disable Completions**, or Command Palette → **GitHub Copilot: Disable Completions**.
+
+Workspace settings already tone down IntelliSense (see `.vscode/settings.json`). Turn completions back on when you switch to course study.
 
 ---
 
 ## Start a session
 
-1. Open Agent chat
+1. Open Agent chat (Cursor) or Copilot Chat (VS Code)
 2. `/interview-companion`
 3. Kick off:
 

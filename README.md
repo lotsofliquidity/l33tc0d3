@@ -2,6 +2,8 @@
 
 Two separate processes live in this repo. Use the matching skill so the agent doesn't mix modes.
 
+Works in Cursor and in VS Code with GitHub Copilot. Skills live in `.agents/skills/` (both editors). Session rules live in [`AGENTS.md`](AGENTS.md).
+
 | Mode | Folder | Skill | What it's for |
 |---|---|---|---|
 | **Interview** | [`interview/`](interview/) | `/interview-companion` | Timed mock interviews, no teaching, hiring-signal feedback |
@@ -41,7 +43,8 @@ interview/               # interview simulations
   solutions/             # date-stamped interview attempts
 MISTAKES.md              # shared error log (+7 day cold revisits)
 SOLUTIONS.md             # index of checked correct solutions
-.cursor/skills/
+AGENTS.md                # always-on session rules (Cursor + VS Code)
+.agents/skills/
   interview-companion/
   course-companion/
 ```

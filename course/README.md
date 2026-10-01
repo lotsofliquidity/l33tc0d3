@@ -10,7 +10,7 @@ Not a mock interview — use `/interview-companion` for that.
 
 ## Start a session
 
-1. Open Agent chat
+1. Open Agent chat (Cursor) or Copilot Chat (VS Code)
 2. `/course-companion`
 3. Paste the course article and/or example, and say which chapter you're on
 
