@@ -47,5 +47,6 @@ Same style as the article code above.
 | Maximum Number of Balloons | [maximum-number-of-balloons.py](course/hashing/counting/examples/maximum-number-of-balloons.py) |
 | Check if the Sentence Is Pangram | [check-if-pangram.py](course/hashing/examples/check-if-pangram.py) |
 | Missing Number | [missing-number.py](course/hashing/examples/missing-number.py) |
+| Jewels and Stones | [jewels-and-stones.py](course/hashing/examples/jewels-and-stones.py) |
 | Max Consecutive Ones III | [max-consecutive-ones-iii.py](course/arrays-and-strings/sliding-window/examples/max-consecutive-ones-iii.py) |
 | Reverse Words in a String III | [reverse-words-in-a-string-iii.py](course/arrays-and-strings/two-pointers/examples/reverse-words-in-a-string-iii.py) |
