@@ -70,7 +70,7 @@ Note what is **not** in there: the correct solution. Checked answers are indexed
 | 2 | 2026-09-17 | Maximum Average Subarray I | Sliding window | Cold revisit 2026-10-03: couldn't identify the fixed-size sliding-window approach and needed the solution. | 2026-10-10 | RECURRED |
 | 4 | 2026-09-20 | K Radius Subarray Averages | Prefix sum | Couldn't finish the centered window. Cold 2026-09-28: built the prefix, then couldn't say which slice each center averages. | 2026-10-05 | RECURRED |
 | 5 | 2026-09-20 | Reverse Words in a String III | Two pointers / strings | Misread: reversed entire string instead of each word. Cold 2026-09-29: word-bounds loop was the right idea, but couldn't finish — helper used full-string indexes on a word-sized list. | 2026-10-06 | RECURRED |
-| 6 | 2026-09-20 | Is Subsequence | Two pointers | Cold 2026-09-29: pointer rules held, then the loop stopped one index early (`len - 1`). Another clean pass requested. | 2026-10-06 | OPEN |
+| 6 | 2026-09-20 | Is Subsequence | Two pointers | Cold revisit 2026-10-06: solved cleanly by advancing the match pointer only when `s[i] == t[j]`; the earlier `len - 1` logic was the bug. | 2026-10-13 | PASSED |
 | 8 | 2026-09-22 | Missing Number | Hashing | Cold revisit 2026-10-03: searched for a missing neighbor after values; returns `n+1` when `0` is missing. | 2026-10-10 | RECURRED |
 | 9 | 2026-09-24 | Counting Elements | Hashing | Cold revisit 2026-10-03: indexed a set (`element_set[i]`), which raised `TypeError`; still needs a clean pass. | 2026-10-10 | RECURRED |
 | 10 | 2026-09-28 | Find Players With Zero or One Losses | Hashing | Needed a walkthrough — counted the match/win instead of losses, and did not keep 0 as a real count. | 2026-10-05 | OPEN |
