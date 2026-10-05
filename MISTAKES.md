@@ -67,14 +67,12 @@ Note what is **not** in there: the correct solution. Checked answers are indexed
 
 | # | Date logged | Problem | Chapter | Went wrong | Revisit due | Status |
 |---|---|---|---|---|---|---|
-| 2 | 2026-09-17 | Maximum Average Subarray I | Sliding window | Fixed-window attempt: `nums[k]` instead of `nums[i]` in build; slide used stale `i` not `right`; compared sum to average. Cold revisit 2026-09-24: looked up solution — pattern forgotten. | 2026-10-01 | RECURRED |
-| 3 | 2026-09-18 | Max Consecutive Ones III | Sliding window | First: compared zeros to `'0'` on ints. Cold 2026-09-25: shrink only moves `left` when `nums[left]==0`, so a 1 under `left` while `curr > k` loops forever. | 2026-10-02 | RECURRED |
+| 2 | 2026-09-17 | Maximum Average Subarray I | Sliding window | Cold revisit 2026-10-03: couldn't identify the fixed-size sliding-window approach and needed the solution. | 2026-10-10 | RECURRED |
 | 4 | 2026-09-20 | K Radius Subarray Averages | Prefix sum | Couldn't finish the centered window. Cold 2026-09-28: built the prefix, then couldn't say which slice each center averages. | 2026-10-05 | RECURRED |
 | 5 | 2026-09-20 | Reverse Words in a String III | Two pointers / strings | Misread: reversed entire string instead of each word. Cold 2026-09-29: word-bounds loop was the right idea, but couldn't finish — helper used full-string indexes on a word-sized list. | 2026-10-06 | RECURRED |
 | 6 | 2026-09-20 | Is Subsequence | Two pointers | Cold 2026-09-29: pointer rules held, then the loop stopped one index early (`len - 1`). Another clean pass requested. | 2026-10-06 | OPEN |
-| 7 | 2026-09-22 | Check if the Sentence Is Pangram | Hashing | Knew set was the right tool; had to look up how to create/add (`set()`, `.add`). | 2026-09-29 | OPEN |
-| 8 | 2026-09-22 | Missing Number | Hashing | Sought neighbor gaps (`num±1`) instead of the missing value in `[0, n]`; breaks when `0` is present (returns `-1`). | 2026-09-29 | OPEN |
-| 9 | 2026-09-24 | Counting Elements | Hashing | Reused Missing Number loop; indexed a set; returned early instead of counting each `x` where `x+1` exists. | 2026-10-01 | OPEN |
+| 8 | 2026-09-22 | Missing Number | Hashing | Cold revisit 2026-10-03: searched for a missing neighbor after values; returns `n+1` when `0` is missing. | 2026-10-10 | RECURRED |
+| 9 | 2026-09-24 | Counting Elements | Hashing | Cold revisit 2026-10-03: indexed a set (`element_set[i]`), which raised `TypeError`; still needs a clean pass. | 2026-10-10 | RECURRED |
 | 10 | 2026-09-28 | Find Players With Zero or One Losses | Hashing | Needed a walkthrough — counted the match/win instead of losses, and did not keep 0 as a real count. | 2026-10-05 | OPEN |
 | 11 | 2026-09-29 | Largest Unique Number | Hashing | Counted frequencies after a descending sort, then returned -1 on the first repeated number instead of scanning for the next count of 1. | 2026-10-06 | OPEN |
 | 12 | 2026-09-29 | Maximum Number of Balloons | Hashing | Took the min raw count of balloon letters that appeared, so a missing letter was ignored and `l`/`o` were not divided by 2. | 2026-10-06 | OPEN |
@@ -99,7 +97,6 @@ Parked before an attempt. Not a mistake. Removed when you start the stub.
 
 | Problem | Chapter | Stub | Parked |
 |---|---|---|---|
-| Group Anagrams | Hashing | [2026-10-01-GroupAnagrams.py](course/hashing/practice/2026-10-01-GroupAnagrams.py) | 2026-10-01 |
 
 ---
 
@@ -110,6 +107,8 @@ Move a row here once it's `PASSED`. Keep them — the tally is your progress mea
 | # | Problem | Chapter | First logged | Closed | Notes |
 |---|---|---|---|---|---|
 | 1 | Squares of a Sorted Array | Two pointers | 2026-09-16 | 2026-09-20 | Interview re-solve; backward fill + `<=` |
+| 3 | Max Consecutive Ones III | Sliding window | 2026-09-18 | 2026-10-03 | Cold revisit passed; maintain a window with at most `k` zeros |
+| 7 | Check if the Sentence Is Pangram | Hashing | 2026-09-22 | 2026-10-03 | Cold revisit passed; track distinct letters with a set |
 
 ---
 

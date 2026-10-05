@@ -21,36 +21,25 @@ Example 2:
 
 class Solution:
     def findMaxAverage(self, nums: list[int], k: int) -> float:
-        
-        # This is a fixed window problem
-        # create the window with the current count
         curr = 0
-        
-        # [1, 12, -5, -6]
         for i in range(k):
-          print("Current element is ", i)
-          curr += nums[i]
-        
-        print("Finished fixed window")
+            curr += nums[i]
 
-        # curr = 2
-
-        # store the curr in an ans var to start
         ans = curr
+        left = 0
 
-        # ans = 2
+        for right in range(k, len(nums)):
+           
 
-        # Run sliding window from the end of the current fixed window
-        for i in range(k, len(nums)):
-          print("Current element is ", i)
-          print(nums[i], nums[k], nums[i - k])
-          curr += nums[i]
-          curr -= nums[i - k]
 
-          # keep track of the current max window number
-          ans = max(ans, curr)
 
-        return ans / k
+            ans = max(ans, right - left + 1)
+
+
+
+
+            
+            
 
 
 

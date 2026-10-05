@@ -27,42 +27,12 @@ class Solution:
         curr = 0
         ans = 0
         left = 0
-
-        # 0, 1, 1, 1, 0, 1
-        # LR
-
-
-        # 0, 1, 1, 1, 0, 1
-        # L  R
-
-        # 0, 1, 1, 1, 0, 0
-        # L           R
-
-
-        # 0, 1, 1, 1, 0, 0
-        # L              R
         for right in range(len(nums)):
           if nums[right] == 0:
             curr += 1
-            # CURR = 1
-            # 0, 1, 1, 1, 0, 1
-            # LR
-
-            # CURR = 3
-            # 0, 1, 1, 1, 0, 0
-            # L              R
             while curr > k:
               if nums[left] == 0:
-
-                # CURR = 3
-                # 0, 1, 1, 1, 0, 0
-                # L              R
-
                 curr -= 1
-
-                # CURR = 2
-                # 0, 1, 1, 1, 0, 0
-                #    L           R
               left += 1
           
           ans = max(ans, right - left + 1)
