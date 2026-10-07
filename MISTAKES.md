@@ -76,7 +76,9 @@ Note what is **not** in there: the correct solution. Checked answers are indexed
 | 10 | 2026-09-28 | Find Players With Zero or One Losses | Hashing | Needed a walkthrough — counted the match/win instead of losses, and did not keep 0 as a real count. | 2026-10-05 | OPEN |
 | 11 | 2026-09-29 | Largest Unique Number | Hashing | Counted frequencies after a descending sort, then returned -1 on the first repeated number instead of scanning for the next count of 1. | 2026-10-06 | OPEN |
 | 12 | 2026-09-29 | Maximum Number of Balloons | Hashing | Took the min raw count of balloon letters that appeared, so a missing letter was ignored and `l`/`o` were not divided by 2. | 2026-10-06 | OPEN |
-| 13 | 2026-09-30 | Contiguous Array | Hashing | Couldn't finish. Mapped an index to a contribution instead of a running score to the first index where that score appeared. | 2026-10-07 | OPEN |
+| 13 | 2026-09-30 | Contiguous Array | Hashing | Couldn't finish. Mapped an index to a contribution instead of a running score to the first index where that score appeared. Cold revisit 2026-10-07: still couldn't derive the `0 → -1` balance idea — read the solution instead of rebuilding it. | 2026-10-14 | RECURRED |
+| 14 | 2026-10-07 | Subarray Sum Equals K | Hashing | Needed the solution after several hints. Never accumulated into the running sum (`curr` stayed 0), and stored the hunted value (`curr - k`) in the map instead of the real running sum — conflating "what I search for" with "what I record". | 2026-10-14 | OPEN |
+| 15 | 2026-10-07 | Remove Duplicates from Sorted List | Linked lists | Needed multiple hints. First attempt used a set and never advanced the walker (infinite loop); then overwrote `head` and returned the walked-to-end pointer instead of the front. Also missed the empty-list guard. | 2026-10-14 | OPEN |
 | | | | | | | |
 | | | | | | | |
 | | | | | | | |

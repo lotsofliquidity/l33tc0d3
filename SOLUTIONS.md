@@ -50,3 +50,4 @@ Same style as the article code above.
 | Jewels and Stones | [jewels-and-stones.py](course/hashing/examples/jewels-and-stones.py) |
 | Max Consecutive Ones III | [max-consecutive-ones-iii.py](course/arrays-and-strings/sliding-window/examples/max-consecutive-ones-iii.py) |
 | Reverse Words in a String III | [reverse-words-in-a-string-iii.py](course/arrays-and-strings/two-pointers/examples/reverse-words-in-a-string-iii.py) |
+| Remove Duplicates from Sorted List | [remove-duplicates-from-sorted-list.py](course/linked-lists/examples/remove-duplicates-from-sorted-list.py) |

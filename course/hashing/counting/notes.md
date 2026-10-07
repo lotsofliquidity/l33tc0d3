@@ -92,6 +92,18 @@ for x in nums:
 
 Four subarrays; empty-prefix init is why the first `[1,2]` is found.
 
+**Longest balanced stretch** — `nums = [1, 1, 0, 0]` (`0 → -1`, `1 → +1`):
+
+| i | x | balance | balance seen before? | first | best |
+|---|---|---------|----------------------|-------|------|
+| — | — | 0 | seed: empty prefix | `{0: -1}` | 0 |
+| 0 | 1 | 1 | no → record | `{0:-1, 1:0}` | 0 |
+| 1 | 1 | 2 | no → record | `{…, 2:1}` | 0 |
+| 2 | 0 | 1 | yes at index 0 | — | `2-0 = 2` |
+| 3 | 0 | 0 | yes at index −1 | — | `3-(-1) = 4` |
+
+Final `4` = the whole array. Without the `-1` seed, row 3 would read `3-0 = 3` and miss it.
+
 ## Related
 - Chapter intro: `course/hashing/notes.md` (maps/sets basics)
 - Sliding window “at most / less than” (positive metrics) — chapter 1; here for **exact** use prefix+count
