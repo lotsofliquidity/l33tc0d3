@@ -21,11 +21,13 @@ Constraints:
 
 from __future__ import annotations
 
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+import sys
+from pathlib import Path
+
+_CHAPTER = next(p for p in Path(__file__).resolve().parents if (p / "linked_list.py").exists())
+sys.path.append(str(_CHAPTER))
+
+from linked_list import ListNode, build, to_list
 
 
 class Solution:
@@ -41,23 +43,6 @@ class Solution:
                 
         return dummy
         
-
-
-def build(values):
-    dummy = ListNode()
-    curr = dummy
-    for v in values:
-        curr.next = ListNode(v)
-        curr = curr.next
-    return dummy.next
-
-
-def to_list(head):
-    out = []
-    while head is not None:
-        out.append(head.val)
-        head = head.next
-    return out
 
 
 if __name__ == "__main__":

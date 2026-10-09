@@ -68,7 +68,7 @@ if __name__ == "__main__":
     # print(s.methodName(...))
 ```
 
-Match the usual LeetCode method signature for that problem. Do not fill in the solution body.
+Match the usual LeetCode method signature for that problem. Include one example call with its expected output. The interface is not a hint — hand it over unprompted; never make them ask for it. Do not fill in the solution body.
 
 ## Hint system
 

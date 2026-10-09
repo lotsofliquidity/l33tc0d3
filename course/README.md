@@ -44,7 +44,7 @@ hashing/
 Per chapter:
 
 - `notes.md` — your high-signal study notes (not a full article dump)
-- `examples/` — worked course examples
+- `examples/` — worked course examples (kebab-case, one file per problem); a session solution is added only when the course has no copy of that problem
 - `practice/` — your attempts (`YYYY-MM-DD-ProblemName.py`)
 
 Add new chapter folders as you reach them (trees, graphs, binary-search, dp, …).

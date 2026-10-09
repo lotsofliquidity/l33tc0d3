@@ -18,11 +18,15 @@ Constraints:
   1 <= Node.val <= 100
 """
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+_CHAPTER = next(p for p in Path(__file__).resolve().parents if (p / "linked_list.py").exists())
+sys.path.append(str(_CHAPTER))
+
+from linked_list import ListNode, build, to_list
 
 
 class Solution:

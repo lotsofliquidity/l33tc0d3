@@ -1,10 +1,12 @@
 # Correct solutions
 
-Two kinds of files. Do not mix them.
+Three kinds of answers. They all live in `course/<chapter>/examples/` under the problem's kebab-case name (`swap-nodes-in-pairs.py`) — one file per problem, no dates.
 
 **Article copies** are the course code, saved the way the article wrote it.
 
 **Exercise solutions** are answers for problems you practiced. They use the same shape as the articles in that chapter (`class Solution`, `defaultdict`, `ans = max(...)`).
+
+**Session solutions** are answers written with you in a session, kept in `course/<chapter>/examples/` under the problem's kebab-case name (no `solutions/` folder). Only write one when the course has **no** copy of that problem — if an article copy exists, that *is* the solution; reuse it instead of adding a second file.
 
 `practice/` and `interview/solutions/` stay your attempts.
 
@@ -51,3 +53,12 @@ Same style as the article code above.
 | Max Consecutive Ones III | [max-consecutive-ones-iii.py](course/arrays-and-strings/sliding-window/examples/max-consecutive-ones-iii.py) |
 | Reverse Words in a String III | [reverse-words-in-a-string-iii.py](course/arrays-and-strings/two-pointers/examples/reverse-words-in-a-string-iii.py) |
 | Remove Duplicates from Sorted List | [remove-duplicates-from-sorted-list.py](course/linked-lists/examples/remove-duplicates-from-sorted-list.py) |
+| Reverse Linked List | [reverse-linked-list.py](course/linked-lists/reversing-a-linked-list/examples/reverse-linked-list.py) |
+
+## Session solutions
+
+Written with you in a session, kept in `course/<chapter>/examples/` under the problem's kebab-case name. Only for problems the course doesn't already include.
+
+| Problem | Session | Reference |
+|---|---|---|
+| Swap Nodes in Pairs | 2026-10-09 | [swap-nodes-in-pairs.py](course/linked-lists/reversing-a-linked-list/examples/swap-nodes-in-pairs.py) |

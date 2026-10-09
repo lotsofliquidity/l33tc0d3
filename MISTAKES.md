@@ -68,17 +68,16 @@ Note what is **not** in there: the correct solution. Checked answers are indexed
 | # | Date logged | Problem | Chapter | Went wrong | Revisit due | Status |
 |---|---|---|---|---|---|---|
 | 2 | 2026-09-17 | Maximum Average Subarray I | Sliding window | Cold revisit 2026-10-03: couldn't identify the fixed-size sliding-window approach and needed the solution. | 2026-10-10 | RECURRED |
-| 4 | 2026-09-20 | K Radius Subarray Averages | Prefix sum | Couldn't finish the centered window. Cold 2026-09-28: built the prefix, then couldn't say which slice each center averages. | 2026-10-05 | RECURRED |
-| 5 | 2026-09-20 | Reverse Words in a String III | Two pointers / strings | Misread: reversed entire string instead of each word. Cold 2026-09-29: word-bounds loop was the right idea, but couldn't finish — helper used full-string indexes on a word-sized list. | 2026-10-06 | RECURRED |
+| 4 | 2026-09-20 | K Radius Subarray Averages | Prefix sum | Couldn't finish the centered window. Cold 2026-09-28: built the prefix, then couldn't say which slice each center averages. Cold 2026-10-08: had the valid centers (`range(k, n-k)`) right, but appended to an already-full `[-1] * n` list, divided each element by `k` instead of the window sum by `2k+1`, and added a `k < nums` guard that crashed. | 2026-10-15 | RECURRED |
 | 6 | 2026-09-20 | Is Subsequence | Two pointers | Cold revisit 2026-10-06: solved cleanly by advancing the match pointer only when `s[i] == t[j]`; the earlier `len - 1` logic was the bug. | 2026-10-13 | PASSED |
 | 8 | 2026-09-22 | Missing Number | Hashing | Cold revisit 2026-10-03: searched for a missing neighbor after values; returns `n+1` when `0` is missing. | 2026-10-10 | RECURRED |
 | 9 | 2026-09-24 | Counting Elements | Hashing | Cold revisit 2026-10-03: indexed a set (`element_set[i]`), which raised `TypeError`; still needs a clean pass. | 2026-10-10 | RECURRED |
-| 10 | 2026-09-28 | Find Players With Zero or One Losses | Hashing | Needed a walkthrough — counted the match/win instead of losses, and did not keep 0 as a real count. | 2026-10-05 | OPEN |
-| 11 | 2026-09-29 | Largest Unique Number | Hashing | Counted frequencies after a descending sort, then returned -1 on the first repeated number instead of scanning for the next count of 1. | 2026-10-06 | OPEN |
+| 10 | 2026-09-28 | Find Players With Zero or One Losses | Hashing | Needed a walkthrough — counted the match/win instead of losses, and did not keep 0 as a real count. Cold 2026-10-09: loss counts were right, but the second loop indexed `matches` by position and read `losers[winner]`/`losers[i]` as if a player were a match — kept hitting `TypeError`; needed the solution. | 2026-10-16 | RECURRED |
 | 12 | 2026-09-29 | Maximum Number of Balloons | Hashing | Took the min raw count of balloon letters that appeared, so a missing letter was ignored and `l`/`o` were not divided by 2. | 2026-10-06 | OPEN |
 | 13 | 2026-09-30 | Contiguous Array | Hashing | Couldn't finish. Mapped an index to a contribution instead of a running score to the first index where that score appeared. Cold revisit 2026-10-07: still couldn't derive the `0 → -1` balance idea — read the solution instead of rebuilding it. | 2026-10-14 | RECURRED |
 | 14 | 2026-10-07 | Subarray Sum Equals K | Hashing | Needed the solution after several hints. Never accumulated into the running sum (`curr` stayed 0), and stored the hunted value (`curr - k`) in the map instead of the real running sum — conflating "what I search for" with "what I record". | 2026-10-14 | OPEN |
 | 15 | 2026-10-07 | Remove Duplicates from Sorted List | Linked lists | Needed multiple hints. First attempt used a set and never advanced the walker (infinite loop); then overwrote `head` and returned the walked-to-end pointer instead of the front. Also missed the empty-list guard. | 2026-10-14 | OPEN |
+| 16 | 2026-10-08 | Reverse Linked List | Linked lists | Couldn't finish in ~10 minutes — needed the solution. Had `prev`, `curr` and `next_node = curr.next` in place, then stalled on the flip and the pointer advance. | 2026-10-15 | OPEN |
 | | | | | | | |
 | | | | | | | |
 | | | | | | | |
@@ -99,6 +98,7 @@ Parked before an attempt. Not a mistake. Removed when you start the stub.
 
 | Problem | Chapter | Stub | Parked |
 |---|---|---|---|
+| Two Sum | Hashing | [course/hashing/practice/2026-10-09-TwoSum.py](course/hashing/practice/2026-10-09-TwoSum.py) | 2026-10-09 |
 
 ---
 
@@ -110,7 +110,9 @@ Move a row here once it's `PASSED`. Keep them — the tally is your progress mea
 |---|---|---|---|---|---|
 | 1 | Squares of a Sorted Array | Two pointers | 2026-09-16 | 2026-09-20 | Interview re-solve; backward fill + `<=` |
 | 3 | Max Consecutive Ones III | Sliding window | 2026-09-18 | 2026-10-03 | Cold revisit passed; maintain a window with at most `k` zeros |
+| 5 | Reverse Words in a String III | Two pointers / strings | 2026-09-20 | 2026-10-08 | Cold revisit passed; word-bounds loop + in-place helper on `list(s)`. Needed one nudge: the final-word reversal sat inside the `for` body, so it ran per character |
 | 7 | Check if the Sentence Is Pangram | Hashing | 2026-09-22 | 2026-10-03 | Cold revisit passed; track distinct letters with a set |
+| 11 | Largest Unique Number | Hashing | 2026-09-29 | 2026-10-09 | Cold revisit passed; count frequencies, then scan all values keeping the largest with count 1. Needed two nudges: `best = (best, num)` built a tuple instead of a running max, and the loop variable shadowed the dict name `count`. |
 
 ---
 

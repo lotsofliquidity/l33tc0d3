@@ -73,9 +73,31 @@ Keep notes tight enough to re-read in under 2 minutes before a session. Prefer c
 
 **Example file:** the article's code, unchanged. A short module docstring is fine. Do not rewrite it into a different shape.
 
+**Practice stubs always carry the interface.** Every `practice/` file — a first
+attempt, an exercise, or a cold revisit — starts from the full LeetCode
+interface, not a bare comment:
+
+```python
+class Solution:
+    def methodName(self, ...) -> ...:
+        pass
+
+
+if __name__ == "__main__":
+    print(Solution().methodName(...))
+    # expected: ...
+```
+
+Use the exact method and parameter names LeetCode gives for that problem, plus
+one example call with its expected output. **The interface is not a hint** —
+handing it over unprompted is the rule; making them ask for it is the failure.
+The interface is all you give: no algorithm, no data structure, no partial body
+lines. If the chapter's articles use plain functions, use a plain function stub
+instead of `class Solution`.
+
 ### B2. They finished an exercise, or they need the solution
 
-Write the solution in the **same style as the article examples in that chapter**: `class Solution` when the articles use it, `defaultdict` / `set` the same way, `ans = max(...)` when the articles do. Put it in their `practice/` file. Also save that same code under `examples/` if a course copy does not already exist. Do not replace an existing article copy with a restyled version.
+Write the solution in the **same style as the article examples in that chapter**: `class Solution` when the articles use it, `defaultdict` / `set` the same way, `ans = max(...)` when the articles do. **If the course already includes the problem, the article copy in `course/<chapter>/examples/` is the solution — reuse it and do not add a second file for the same problem.** Only when the course has no copy, put it in `course/<chapter>/examples/<kebab-name>.py`, named for the problem in kebab-case (no dates). There is no `solutions/` folder. Their `practice/` attempt stays as it was — the solution never overwrites it. Never rewrite an existing article copy.
 
 ### C. They don't understand / are stuck
 
@@ -92,7 +114,7 @@ Default to **Socratic → then direct**:
 If they say it has been about 10 minutes and they haven't progressed (or anything close: "stuck for 10 minutes", "still no progress"):
 
 1. End the problem. No more nudges.
-2. Give the solution: idea, short trace, working code in their `practice/` file, written in the same style as the article examples in that chapter. Do not restyle an existing article copy. Add an `examples/` file only if the course did not already provide one, using that same style. Run the problem's examples. Add or update the `SOLUTIONS.md` row.
+2. Give the solution: idea, short trace, then working code in the same style as the article examples in that chapter. If the course already includes the problem, reuse its copy in `course/<chapter>/examples/`; otherwise write `course/<chapter>/examples/<kebab-name>.py` (kebab-case, no dates). Their `practice/` attempt stays untouched, and never restyle an existing article copy. Run the problem's examples. Add or update the `SOLUTIONS.md` row.
 3. Log `MISTAKES.md` (couldn't finish in ~10 minutes — needed the solution; revisit = today + 7; `OPEN`, or `RECURRED` if this was a due revisit). One-line confirmation with the due date.
 4. Stop.
 
@@ -102,10 +124,13 @@ If they say it has been about 10 minutes and they haven't progressed (or anythin
 |---|---|
 | Chapter notes | `course/<chapter>/notes.md` |
 | Worked examples | `course/<chapter>/examples/<kebab-name>.py` |
+| Session solutions (only when the course has no copy) | `course/<chapter>/examples/<kebab-name>.py` |
 | Their attempts | `course/<chapter>/practice/YYYY-MM-DD-ProblemName.py` |
 | Index of checked answers | `SOLUTIONS.md` |
 
-When you save an article copy or an exercise solution under `examples/`, add one row to `SOLUTIONS.md`. Article copies stay exact. Exercise solutions match the article style. Do not point a row at a `practice/` attempt or an `interview/solutions/` attempt.
+`examples/` holds the course's own code, unchanged and kebab-cased, and answers written for them in a session — also kebab-cased and named for the problem (no dates), and only for problems the course does not already include. `practice/` holds only their attempts, and a solution never overwrites one.
+
+Add one row to `SOLUTIONS.md` whenever you save an article copy or a solution under `examples/`. Do not point a row at a `practice/` attempt or an `interview/solutions/` attempt.
 
 Infer `<chapter>` from context (open files, topic, prior messages). Examples: `arrays-and-strings/two-pointers`, `arrays-and-strings/sliding-window`, `hashing`.
 
@@ -113,7 +138,7 @@ Infer `<chapter>` from context (open files, topic, prior messages). Examples: `a
 
 ### Session start — due revisits
 
-Before other course work, read `MISTAKES.md` Open entries. If any `OPEN`/`RECURRED` row has **Revisit due ≤ today**, list them and offer a cold re-solve first (no notes/hints). On success → `PASSED` + move to Closed. On fail → `RECURRED`, revisit due = today + 7.
+Before other course work, read `MISTAKES.md` Open entries. If any `OPEN`/`RECURRED` row has **Revisit due ≤ today**, list them and offer a cold re-solve first (no notes/hints). Create the `practice/` stub for the revisit with the interface stub described above. On success → `PASSED` + move to Closed. On fail → `RECURRED`, revisit due = today + 7.
 
 If none due, skip this (don't announce "all clear").
 

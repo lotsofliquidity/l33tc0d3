@@ -29,6 +29,15 @@ Why: green line (sum through `j`) minus red line (sum through `i-1`) leaves only
 
 Alternate (avoids `i-1` bounds): `prefix[j] - prefix[i] + nums[i]`.
 
+### Two conventions (the usual bug)
+
+| | Array | Sum of `nums[a..b]` |
+|---|---|---|
+| Through `i` — notes, `-plain.py` | `prefix[i] = sum(nums[0..i])`, length `n` | `prefix[b] - prefix[a-1]`, special-case `a == 0` |
+| Before `i` — `solutions/` K-radius | `prefix[i] = sum(nums[0..i-1])`, length `n+1` | `prefix[b+1] - prefix[a]`, no special case |
+
+Read the second one as **bookmarks**: `prefix[x]` sits *just before* element `x`. So `nums[a..b]` is the gap between bookmark `a` and bookmark `b+1`. The `+1` is only "count `b` in too" — nothing to do with `k`.
+
 **Pre-processing:** spend O(n) once building `prefix`, then each range sum is O(1).
 
 ## Pattern / template
@@ -67,6 +76,7 @@ Still a prefix-sum *idea*, just O(1) extra space (e.g. ways to split array).
 ## Pitfalls
 - Off-by-one on `i - 1` when `i == 0` — handle the empty-left case
 - Confusing `prefix[i]` (inclusive through `i`) with “sum before `i`”
+- **In the `+1` convention:** `prefix[i+k] - prefix[i-k]` looks right but drops the right edge — that's `2k` numbers, and the window is `2k+1`
 - Building prefix but still looping `i..j` to sum — defeats the point
 - Not every subarray problem needs a prefix array (sliding window may fit better for “best window under a constraint”)
 - **Min start value so running sum ≥ 1:** deepest dip = `min(prefix)`; need `startValue ≥ 1 - min_prefix`, and at least 1 → `max(1, 1 - min_prefix)`

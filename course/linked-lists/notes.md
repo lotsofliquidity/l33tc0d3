@@ -58,6 +58,32 @@ Start with `1 -> 2 -> 3 -> None` and remove `2`:
 
 The important part is that `2` is removed by changing the pointer before it, not by shifting values.
 
+## Shared helpers
+[`linked_list.py`](linked_list.py) holds the node type and the test plumbing, so practice files don't re-declare it:
+
+| Helper | Does |
+|---|---|
+| `build(values)` | `[1, 2, 3]` → head |
+| `to_list(head)` | head → `[1, 2, 3]` (raises instead of hanging on a cycle) |
+| `clone(head)` | fresh copy, so a case can be re-run after a solution mutates it |
+| `build_cycle(values, pos)` | tail links back to index `pos` — for 141 / 142 |
+
+Header for a practice file (the `annotations` line is needed on Python 3.9):
+
+```python
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+_CHAPTER = next(p for p in Path(__file__).resolve().parents if (p / "linked_list.py").exists())
+sys.path.append(str(_CHAPTER))
+
+from linked_list import ListNode, build, to_list
+```
+
+`examples/` copies stay standalone on purpose — they keep their own `ListNode` like the course wrote it.
+
 ## Related
 - Sibling pattern: two pointers / fast-slow pointers are often used with linked lists
 - Not the same as arrays: arrays support O(1) index access, but linked lists are better for structural edits
