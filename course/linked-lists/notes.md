@@ -47,6 +47,8 @@ Typical linked-list patterns:
 - Forgetting to handle `head is None` or a single-node list
 - Accidentally creating a cycle by pointing a node back into the list
 - Using index-based reasoning on a list that has no random access
+- **Two different things get called `dummy`.** A *saved front reference* (`saved = head`) only keeps the original front alive when you walk a separate pointer — the head node itself is never deleted. A *sentinel* is a real fake node in front (`dummy = ListNode(); dummy.next = head`), needed when the head node itself can be removed, because then the new front has to be discovered and returned as `dummy.next`. Dedupe (83) is the first kind; "delete every node with value v" and pair-swapping are the second.
+- **After a deletion, don't advance the walker.** Stay on the same node so a run collapses fully; only advance when there is no match. Advancing after every delete leaves duplicates behind whenever a run has 3+ equal values — `[7, 7, 7]` comes out `[7, 7]` and `[1, 1, 1, 1]` comes out `[1, 1]`.
 
 ## Tiny example
 Start with `1 -> 2 -> 3 -> None` and remove `2`:

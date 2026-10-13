@@ -54,6 +54,7 @@ Need a list as a key → `tuple(arr)` (or a delimiter string if elements can't c
 - Starting from `{}` instead of `defaultdict` or `set`
 - Treating O(1) as "free" on tiny inputs — hash overhead can lose to a simple array/scan
 - Using a **set** when you need **counts** (sets ignore duplicates; use a dict/Counter)
+- Reaching for a **dict** when you only need **existence** — a `set` is the cheap fit; a dict earns its place only when each element carries something extra (a count, an index, a group)
 - Mutating a list and expecting it to stay a valid key — convert to `tuple` first
 - `del d[k]` / `d[k]` when `k` may be missing → use `in` or `.get(k, default)`
 - Saying map ops are O(1) without noting string-key hashing is O(m)
