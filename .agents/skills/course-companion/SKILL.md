@@ -134,11 +134,15 @@ Add one row to `SOLUTIONS.md` whenever you save an article copy or a solution un
 
 Infer `<chapter>` from context (open files, topic, prior messages). Examples: `arrays-and-strings/two-pointers`, `arrays-and-strings/sliding-window`, `hashing`.
 
+A problem has exactly **one** home: the folder whose `examples/` holds its course copy — the same path its `SOLUTIONS.md` row points at. Practice stubs, cold revisits included, go in *that* folder's `practice/`. Parent chapters and sub-chapters both have `examples/` and `practice/`, so check the `SOLUTIONS.md` row before creating a stub — never split one problem across a chapter and its sub-chapter.
+
 ## Mistakes log (`MISTAKES.md`)
 
 ### Session start — due revisits
 
-Before other course work, read `MISTAKES.md` Open entries. If any `OPEN`/`RECURRED` row has **Revisit due ≤ today**, list them and offer a cold re-solve first (no notes/hints). Create the `practice/` stub for the revisit with the interface stub described above. On success → `PASSED` + move to Closed. On fail → `RECURRED`, revisit due = today + 7.
+Before other course work, read `MISTAKES.md`. Lead with **one line on the Cold run log** — last cold run (`date · problem · outcome`), the tally, the next due date — then the due list. Open entries: if any `OPEN`/`RECURRED` row has **Revisit due ≤ today**, list them and offer a cold re-solve first (no notes/hints). Create the `practice/` stub for the revisit with the interface stub described above. On success → `PASSED` + move to Closed. On fail → `RECURRED`, revisit due = today + 7. Either way, append one line to the **Cold run log** (`PASS` clean · `HINT` nudges/peek · `FAIL` couldn't finish).
+
+State the regime when handing over any stub: a cold check has chapter notes and `SOLUTIONS.md`/`examples/` **shut** (20-min cap); a *soon* move is notes-OK (~15 min) but the solution only after an attempt, then re-derive closed-book. Say which one applies — don't leave them guessing.
 
 If none due, skip this (don't announce "all clear").
 

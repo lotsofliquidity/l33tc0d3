@@ -24,6 +24,17 @@ class Solution:
             curr = next_node
         return prev                 # prev is the new head
 ```
+Read the reverse body as moving the first node of the *old* chain onto the front of a
+*new* chain: `curr.next = prev` performs the move, `prev = curr` says the moved node is
+the new chain's front, `curr = next_node` steps to the first node still on the old chain.
+When the old chain runs out (`curr is None`), `prev` is the entire new chain — which is
+why the answer is `prev` and not `curr`.
+
+The order of those four lines is forced by data flow, not taste: line 1 exists only
+because line 2 destroys `curr.next`; line 2 is the only line that changes the list;
+line 3 must follow it (the other order makes `curr.next = curr`, a self-loop); line 4 must
+be last because it is the only line that still needs the old `curr`.
+
 Same move, local to one pair `A -> B` (swap nodes in pairs):
 
 Read every line with these roles in your head — the body's only job is to make
@@ -109,6 +120,12 @@ Return `dummy.next` → `2 -> 1 -> 3`. The odd tail is never entered or repaired
 - **Two shapes for pair swapping — pick one and never mix lines between them.** They differ in one place only: *when* the finished part gets attached to the new front `B`.
   - **Sentinel shape** (recommended): `dummy = ListNode(0, head)`, `prev = dummy`, guard `while prev.next and prev.next.next`. Join happens **inside the same iteration** via `prev.next = second`, and every iteration is identical — no first-pair special case.
   - **Front-handle shape** (`practice/2026-10-09-SwapNodesInPairs.py`): `dummy = head.next`, `prev = None`, guard `while head and head.next`, join is the conditional `if prev: prev.next = head.next` **at the top of the next iteration** — one pass late. The first pass has no predecessor, so the loop carries a special case. It's correct (exhaustively checked), just harder to reason about.
+- **Why the four lines can't be reordered** — each swap breaks it a different way:
+  - flip before saving → the untouched part becomes unreachable
+  - `prev = curr` before the flip → `curr.next = curr`, a one-node cycle
+  - `curr = next_node` before `prev = curr` → `prev` lands on the *unprocessed* node, so the return value is wrong
+- **The guard belongs to the pattern.** Plain reversal walks with `while curr:` — a 1-node list still qualifies. `while head and head.next` is the *pair-swap* guard; writing it into a reversal means the loop never starts (2026-10-15).
+- **The names are positional, not role-based.** `prev`/`curr` say *where you are in the walk*; the jobs they do are "front of the list I'm building" (`prev` = `new_head`) and "front of the list I'm consuming" (`curr`). That mismatch is part of why reversal reads as bookkeeping. Positional names also collapse once a problem needs three or four live pointers (swap pairs) — that's the signal to name by role. Minor Python point: `next` is a builtin, so the temp is `next_node`/`nxt`.
 - Losing the answer when it is not the original head: save it in a `dummy` node up front.
 - In the article's shape the `# Step N` comments are **not** execution order (`# Step 5` runs first, `# Step 6` last) — follow the code, not the numbers.
 
@@ -132,6 +149,13 @@ None <- 1 <- 2   |   3 -> 4 -> None
 
 reversed prefix   |   untouched suffix  (reachable only via next_node)
 ```
+
+## Self-test (before the cold revisit)
+Answer out loud, no code open:
+1. Why is `next_node` saved *before* the flip, and not after?
+2. What is `prev` on the first pass, and why is that the correct value?
+3. When the loop ends, where does `curr` point — and why must you return `prev`?
+4. Move `prev = curr` above `curr.next = prev`. What breaks?
 
 ## Related
 - Fast and slow pointers (`fast-and-slow-pointers/notes.md`) — used to *find* the middle before reversing half of it.

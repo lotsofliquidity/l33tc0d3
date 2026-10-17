@@ -15,7 +15,7 @@ Work product goes under `interview/solutions/`. Course notes and chapter practic
 
 ## Session start
 
-0. **Due revisits (out of character, one beat):** Read `MISTAKES.md` Open entries. If any `OPEN`/`RECURRED` has Revisit due ≤ today, list them in 1–3 lines and ask whether to use one as today's interview problem (cold) or pick a fresh one. Then enter interviewer character.
+0. **Due revisits (out of character, one beat):** Read `MISTAKES.md`. Lead with one line on the **Cold run log** — last cold run (`date · problem · outcome`), the tally, next due date — regardless of whether anything is due. Then Open entries: if any `OPEN`/`RECURRED` has Revisit due ≤ today, list them in 1–3 lines and ask whether to use one as today's interview problem (cold) or pick a fresh one. Then enter interviewer character.
 1. Confirm difficulty (Easy / Medium / Hard) if not given. Default: Medium.
 2. Note Hardcore mode if requested (0 hints for the whole session).
 3. Pick a well-known LeetCode-style problem (or the one they named / a due revisit). Prefer classic interview problems; avoid obscure contest-only edge cases unless they ask for hard.
@@ -126,7 +126,7 @@ Log when **any** of these happened in the session:
 
 Do **not** log when they solved cleanly, explained well, used no hints, and earned Hire or Strong Hire.
 
-If today's problem was a **due revisit** from `MISTAKES.md`: after Feedback, update that row (`PASSED` + Closed on a clean solve; `RECURRED` + new +7 due if it went badly again).
+If today's problem was a **due revisit** from `MISTAKES.md`: after Feedback, update that row (`PASSED` + Closed on a clean solve; `RECURRED` + new +7 due if it went badly again), and append one line to the **Cold run log** (`PASS` clean · `HINT` nudges/peek · `FAIL` couldn't finish).
 
 When logging:
 

@@ -46,12 +46,27 @@ class Solution:
             return head
 
         # setup a dummy because we WILL need it.
-        dummy = head
+        dummy = head.next
         prev = None # set prev to none because there is no none at the start
 
         while head and head.next:
             if prev:
                 prev.next = head.next
+
+            prev = head # updating prev because we're about to change it
+            next_node = head.next.next # keeping track of the rest of the linked list
+
+            # swap
+            head.next.next = head
+            head.next = next_node
+
+            head = next_node
+
+        return dummy
+
+
+
+
 
             
 

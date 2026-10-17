@@ -15,7 +15,7 @@ When the user says they have been about **10 minutes** with little or no progres
 
 1. **End the session** on that problem. One short line that the clock ran out.
 2. **Give the solution.** Plain-language idea, a short trace on one example, then working code, in the same style as the course article examples for that chapter. **If the course already includes the problem, reuse its copy** in `course/<chapter>/examples/` — do not add a second file for the same problem. Otherwise write `course/<chapter>/examples/<kebab-name>.py` (or `interview/solutions/` in a mock interview). Their `practice/` attempt stays untouched — never overwrite it, and never rewrite an existing article copy. Run the problem's examples. Add or update the row in `SOLUTIONS.md`.
-3. **Log `MISTAKES.md`.** Open entries, next `#`, today, problem, chapter, `Went wrong` = couldn't finish in ~10 minutes — needed the solution (the mistake, not the algorithm). `Revisit due` = today + 7 days. Status `OPEN`. If this attempt was already a due revisit, set that row to `RECURRED` and due = today + 7. Confirm in one line, including the revisit date.
+3. **Log `MISTAKES.md`.** Open entries, next `#`, today, problem, chapter, `Went wrong` = couldn't finish in ~10 minutes — needed the solution (the mistake, not the algorithm). `Revisit due` = today + 7 days. Status `OPEN`. If this attempt was already a due revisit, set that row to `RECURRED` and due = today + 7, and append a line to **Cold run log**. Confirm in one line, including the revisit date.
 
 Then stop. A new problem starts only if they start one.
 
@@ -23,6 +23,7 @@ Then stop. A new problem starts only if they start one.
 
 At the **start** of any course or interview session in this repo (or when the user asks what to work on / what's due):
 
+0. **Cold run log line — every session, both modes.** Read `MISTAKES.md` → **Cold run log** and lead with one line: last cold run (`date · problem · outcome`), the tally, then the next due date. Do this before the due list.
 1. Read `MISTAKES.md` → **Open entries**.
 2. Today's date is the session date (from user_info if present).
 3. Flag every `OPEN` or `RECURRED` row whose **Revisit due** is today or earlier.
@@ -35,5 +36,13 @@ Due revisits (cold re-solve — no notes/hints first):
 
 5. Ask: revisit one now, or continue with what they came for?
 6. If none due: say nothing about revisits (don't spam "all clear").
-7. After a successful cold revisit: set that row to `PASSED` and move it to **Closed entries**. If they fail again: `RECURRED`, new revisit due = today + 7 days; keep/re-log per `MISTAKES.md` rules.
+7. After a successful cold revisit: set that row to `PASSED` and move it to **Closed entries**. If they fail again: `RECURRED`, new revisit due = today + 7 days; keep/re-log per `MISTAKES.md` rules. Either way, append a line to **Cold run log** — `PASS` clean · `HINT` nudges/peek · `FAIL` couldn't finish.
 8. Also read **Up next**. On a course session, after the due list (or first, if none are due), name each parked problem and its stub in one line. Ask whether to start one. Do not mention Up next during a mock interview. Delete that row once they start the problem.
+
+## Notes vs cold
+
+**Cold means nothing open.** Chapter notes and `SOLUTIONS.md`/`examples/` are both shut for a cold check — 20-minute cap, then stop and take the *soon* move. The *soon* move (same pattern within a few days, ~15 min) is where notes and the solution are open, but only after an attempt, and then re-derive it closed-book. A first attempt at a new problem may read the chapter notes *before* starting; they shut once the stub is in front of them. Say which regime applies when you hand over a stub — the full table is in `MISTAKES.md`.
+
+## One home per problem
+
+Parent chapters and their sub-chapters each have their own `examples/` and `practice/`. A problem lives where its course copy lives — the folder its `SOLUTIONS.md` row points at. Put first attempts and cold-revisit stubs there; never split one problem across a chapter and its sub-chapter.
