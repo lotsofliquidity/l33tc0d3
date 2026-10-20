@@ -36,6 +36,8 @@ Cmd-click a link to open the file.
 | Equal number of occurrences | [check-equal-occurrences.py](course/hashing/counting/examples/check-equal-occurrences.py) |
 | Subarray Sum Equals K | [subarray-sum-equals-k.py](course/hashing/counting/examples/subarray-sum-equals-k.py) |
 | Count Number of Nice Subarrays | [count-number-of-nice-subarrays.py](course/hashing/counting/examples/count-number-of-nice-subarrays.py) |
+| Valid Parentheses | [valid-parentheses.py](course/stacks/string-problems/examples/valid-parentheses.py) |
+| Simplify Path | [simplify-path.py](course/stacks/string-problems/examples/simplify-path.py) |
 
 ## Exercise solutions
 
@@ -62,3 +64,5 @@ Written with you in a session, kept in `course/<chapter>/examples/` under the pr
 | Problem | Session | Reference |
 |---|---|---|
 | Swap Nodes in Pairs | 2026-10-09 | [swap-nodes-in-pairs.py](course/linked-lists/reversing-a-linked-list/examples/swap-nodes-in-pairs.py) |
+| Reverse Linked List II | 2026-10-20 | [reverse-linked-list-ii.py](course/linked-lists/reversing-a-linked-list/examples/reverse-linked-list-ii.py) |
+| Reverse Linked List II (recursive) | 2026-10-20 | [reverse-linked-list-ii-recursive.py](course/linked-lists/reversing-a-linked-list/examples/reverse-linked-list-ii-recursive.py) |

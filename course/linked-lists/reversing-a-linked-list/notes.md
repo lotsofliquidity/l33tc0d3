@@ -127,6 +127,7 @@ Return `dummy.next` → `2 -> 1 -> 3`. The odd tail is never entered or repaired
 - **The guard belongs to the pattern.** Plain reversal walks with `while curr:` — a 1-node list still qualifies. `while head and head.next` is the *pair-swap* guard; writing it into a reversal means the loop never starts (2026-10-15).
 - **The names are positional, not role-based.** `prev`/`curr` say *where you are in the walk*; the jobs they do are "front of the list I'm building" (`prev` = `new_head`) and "front of the list I'm consuming" (`curr`). That mismatch is part of why reversal reads as bookkeeping. Positional names also collapse once a problem needs three or four live pointers (swap pairs) — that's the signal to name by role. Minor Python point: `next` is a builtin, so the temp is `next_node`/`nxt`.
 - Losing the answer when it is not the original head: save it in a `dummy` node up front.
+- Reverse between positions: `left` and `right` are positions, not values. The walker has to move on every step, including the prefix before `left`. Moving it only inside the range leaves it sitting on one node while the counter runs away, and the loop never ends.
 - In the article's shape the `# Step N` comments are **not** execution order (`# Step 5` runs first, `# Step 6` last) — follow the code, not the numbers.
 
 ## Tiny example

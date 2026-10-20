@@ -7,10 +7,11 @@ Source: course article walkthrough (swap one pair at a time with prev/head/
 Companion file: ../practice/2026-10-09-SwapNodesInPairs.py is the attempt.
 
 Idea: relink each pair A -> B into B -> A while keeping the rest of the list
-      reachable. `dummy` holds the node to return (the old second node, which
-      is no longer the list head); `prev` is the last node of the already
-      finished part, so it can attach to B while A points at whatever follows
-      the pair. The loop needs two nodes, so an odd tail is left in place.
+      reachable. `dummy` is the old second node, saved before any rewiring —
+      an existing node, the one to return. `prev` is the last node of the
+      already finished part, so it can attach to B while A points at whatever
+      follows the pair. The first pair has no predecessor. The loop needs two
+      nodes, so an odd tail is left in place.
 
 Example 1:
   Input: head = [1,2,3,4]
@@ -39,16 +40,22 @@ from linked_list import ListNode, build, to_list
 
 class Solution:
     def swapPairs(self, head: ListNode | None) -> ListNode | None:
-        dummy = ListNode(0, head)  # keeps the node we must return
-        prev = dummy               # tail of the already-swapped part
-        while prev.next and prev.next.next:
-            first = prev.next          # A
+        if not head or not head.next:
+            return head
+
+        dummy = head.next  # existing second node; this is the node to return
+        prev = None           # no finished part yet, so the first pair has no predecessor
+        while head and head.next:
+            first = head               # A
             second = first.next        # B
-            first.next = second.next   # A -> C, so the rest stays reachable
+            nxt = second.next          # C, saved before the pair is rewired
             second.next = first        # B -> A
-            prev.next = second         # finished part -> B
+            first.next = nxt           # A -> C, so the rest stays reachable
+            if prev:
+                prev.next = second     # finished part -> B
             prev = first               # A is now the tail of the finished part
-        return dummy.next
+            head = nxt
+        return dummy
 
 
 if __name__ == "__main__":
