@@ -93,7 +93,7 @@ Note what is **not** in there: the correct solution. Checked answers are indexed
 | 13 | 2026-09-30 | Contiguous Array | Hashing | Couldn't finish. Mapped an index to a contribution instead of a running score to the first index where that score appeared. Cold revisit 2026-10-07: still couldn't derive the `0 → -1` balance idea — read the solution instead of rebuilding it. | 2026-10-14 | RECURRED |
 | 14 | 2026-10-07 | Subarray Sum Equals K | Hashing | Needed the solution after several hints. Never accumulated into the running sum (`curr` stayed 0), and stored the hunted value (`curr - k`) in the map instead of the real running sum — conflating "what I search for" with "what I record". | 2026-10-14 | OPEN |
 | 15 | 2026-10-07 | Remove Duplicates from Sorted List | Linked lists | Needed multiple hints. First attempt used a set and never advanced the walker (infinite loop); then overwrote `head` and returned the walked-to-end pointer instead of the front. Also missed the empty-list guard. Cold 2026-10-14: wiring came out right and passed all four cases (1,1,2 / 1,1,2,3,3 / [] / 7,7,7), but peeked at the solution for the saved-front reference and the advance-only-on-mismatch step — not a cold solve. | 2026-10-21 | RECURRED |
-| 16 | 2026-10-08 | Reverse Linked List | Linked lists | Couldn't finish in ~10 minutes — needed the solution. Had `prev`, `curr` and `next_node = curr.next` in place, then stalled on the flip and the pointer advance. Cold revisit 2026-10-15: same wall. Declared `prev`/`curr`, then left the body empty and wrote the *pair-swap* guard (`while head and head.next`) for a plain reversal — reached for the neighbouring pattern's skeleton instead of this one's. After the solution, three explanation passes still hadn't produced a verbal model of why the four lines are ordered that way. 2026-10-16: re-wrote the four lines correctly, but still couldn't say why the order is load-bearing — re-explained with the old-chain/new-chain model. | 2026-10-22 | RECURRED |
+| 16 | 2026-10-08 | Reverse Linked List | Linked lists | Couldn't finish in ~10 minutes — needed the solution. Had `prev`, `curr` and `next_node = curr.next` in place, then stalled on the flip and the pointer advance. Cold revisit 2026-10-15: same wall. Declared `prev`/`curr`, then left the body empty and wrote the *pair-swap* guard (`while head and head.next`) for a plain reversal — reached for the neighbouring pattern's skeleton instead of this one's. After the solution, three explanation passes still hadn't produced a verbal model of why the four lines are ordered that way. 2026-10-16: re-wrote the four lines correctly, but still couldn't say why the order is load-bearing — re-explained with the old-chain/new-chain model. Cold 2026-10-22: declared `prev`/`curr` again, then mixed `head` into the body (`next_node = head.next`, `head.next = prev`) so the walker never left the first node — crashed / stalled; needed the solution. | 2026-10-29 | RECURRED |
 | 17 | 2026-10-13 | Swap Nodes in Pairs | Linked lists | Couldn't derive the pair-swap wiring across two sessions (10-09, today) even with hints — needed the solution. Set `B.next = A` but left `A.next -> B`, a two-node cycle, so `C` was unreachable; no `return` statement; never reached the guard, the loop, or the dummy boundary. Rebuild 2026-10-15: the wiring is right now and all four examples plus `[1,2,3]` pass (fuzzed 2020 cases) — but not a cold solve: needed the `dummy = head` → `head.next` correction and a reminder to actually `return`. | 2026-10-22 | RECURRED |
 | 18 | 2026-10-20 | Reverse Linked List II | Linked lists | Couldn't finish — needed the solution. Compared `left`/`right` to node values, then only advanced the walker inside the range, so the loop never ended. | 2026-10-27 | OPEN |
 | 19 | 2026-10-21 | Simplify Path | Stacks | Couldn't finish — needed the solution. Walked character-by-character and only collapsed `//`; never treated path segments as stack entries, so `.` / `..` / `...` were unreachable. | 2026-10-28 | OPEN |
@@ -121,7 +121,7 @@ on a given day without reading prose.
 a peek (so not a clean solve) · `FAIL` = couldn't finish, or needed the solution.
 Cold checks only — non-cold rebuilds stay in the row text above.
 
-Tally: **7 clean · 4 hint-assisted · 7 failed** (18 runs).
+Tally: **7 clean · 4 hint-assisted · 8 failed** (19 runs).
 
 | Date | # | Problem | Run | Note |
 |---|---|---|---|---|
@@ -143,6 +143,7 @@ Tally: **7 clean · 4 hint-assisted · 7 failed** (18 runs).
 | 2026-10-15 | 16 | Reverse Linked List | FAIL | same wall — declared `prev`/`curr`, left the body empty, wrote the *pair-swap* guard |
 | 2026-10-17 | 10 | Find Players With Zero or One Losses | HINT | ~20 min; needed the "the map answers losses only" hint. Both examples + a 3000-case fuzz pass after it |
 | 2026-10-17 | 9 | Counting Elements | FAIL | built the set inside the loop and tested `num in seen` (always true) instead of `num + 1 in seen`; stopped the clock |
+| 2026-10-22 | 16 | Reverse Linked List | FAIL | mixed `head` into the reverse body; walker never left the first node |
 
 ---
 
