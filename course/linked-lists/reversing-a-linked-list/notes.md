@@ -130,6 +130,18 @@ Return `dummy.next` → `2 -> 1 -> 3`. The odd tail is never entered or repaired
 - Reverse between positions: `left` and `right` are positions, not values. The walker has to move on every step, including the prefix before `left`. Moving it only inside the range leaves it sitting on one node while the counter runs away, and the loop never ends.
 - In the article's shape the `# Step N` comments are **not** execution order (`# Step 5` runs first, `# Step 6` last) — follow the code, not the numbers.
 
+## Visual model (revisit when confused)
+Think in **two lanes**, not one line of boxes:
+
+- **NEW chain** — what `prev` is building (already reversed)
+- **OLD chain** — what `curr` still has to reverse
+
+Each pass moves one node from OLD onto the front of NEW. The only arrow that
+changes is `curr.next = prev`. Saving `next_node` first is what keeps OLD reachable.
+
+Interactive step-through (Play / Step): Cursor canvas **`reverse-linked-list`**.
+Same content checked into git: [reverse-linked-list-walkthrough.md](reverse-linked-list-walkthrough.md).
+
 ## Tiny example
 `1 -> 2 -> 3 -> 4`, reverse it. `curr` and `next_node` are read at the top of the body; `list` is the state right after the flip.
 
