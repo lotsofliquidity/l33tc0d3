@@ -5,6 +5,7 @@ Course chapter folders:
 - [`two-pointers/`](two-pointers/)
 - [`sliding-window/`](sliding-window/)
 - [`prefix-sum/`](prefix-sum/)
+- [`subarrays/`](subarrays/) — a step-by-step path from contiguous slices to prefix-sum counting
 - [`more-patterns/`](more-patterns/)
 
 Use this page as a **menu**, not a textbook. Pick the pattern, then open that folder’s `notes.md` only if you need more.
