@@ -27,6 +27,11 @@ Log a row when any of these is true:
 1. **Soon** — if you couldn't finish, practice that pattern again within a few days (notes OK, ~15 min). Don't wait a week to touch it. This is the move that retires entries; the cold check only measures.
 2. **Cold due (+7 days)** — re-solve with no notes/hints. Pass → `PASSED` + Closed. Fail → `RECURRED`, new due = today + 7. Either way, one line in the **Cold run log**.
 
+**Scheduled re-checks** sit outside those two moves: a `PASSED` row can carry one
+extra confirmation date in the **Scheduled re-checks** table under Closed entries.
+Same cold rules, same 20-min cap. Pass → the row stays closed and the line is
+deleted. Fail → back to `RECURRED`, due = today + 7.
+
 **Cold checks are capped, and weekend-friendly.** *(decided 2026-10-12)*
 
 - **Cap: 20 minutes.** The ten-minute stop applies. Running out the clock on one problem is a fail, not a study session — stop, log `RECURRED`, and take the pattern through the *soon* move instead.
@@ -94,7 +99,7 @@ Note what is **not** in there: the correct solution. Checked answers are indexed
 | 16 | 2026-10-08 | Reverse Linked List | Linked lists | Couldn't finish in ~10 minutes — needed the solution. Had `prev`, `curr` and `next_node = curr.next` in place, then stalled on the flip and the pointer advance. Cold revisit 2026-10-15: same wall. Declared `prev`/`curr`, then left the body empty and wrote the *pair-swap* guard (`while head and head.next`) for a plain reversal — reached for the neighbouring pattern's skeleton instead of this one's. After the solution, three explanation passes still hadn't produced a verbal model of why the four lines are ordered that way. 2026-10-16: re-wrote the four lines correctly, but still couldn't say why the order is load-bearing — re-explained with the old-chain/new-chain model. Cold 2026-10-22: declared `prev`/`curr` again, then mixed `head` into the body (`next_node = head.next`, `head.next = prev`) so the walker never left the first node — crashed / stalled; needed the solution. | 2026-10-29 | RECURRED |
 | 17 | 2026-10-13 | Swap Nodes in Pairs | Linked lists | Couldn't derive the pair-swap wiring across two sessions (10-09, today) even with hints — needed the solution. Set `B.next = A` but left `A.next -> B`, a two-node cycle, so `C` was unreachable; no `return` statement; never reached the guard, the loop, or the dummy boundary. Rebuild 2026-10-15: the wiring is right now and all four examples plus `[1,2,3]` pass (fuzzed 2020 cases) — but not a cold solve: needed the `dummy = head` → `head.next` correction and a reminder to actually `return`. | 2026-10-22 | RECURRED |
 | 18 | 2026-10-20 | Reverse Linked List II | Linked lists | Couldn't finish — needed the solution. Compared `left`/`right` to node values, then only advanced the walker inside the range, so the loop never ended. | 2026-10-27 | OPEN |
-| 19 | 2026-10-21 | Simplify Path | Stacks | Couldn't finish — needed the solution. Walked character-by-character and only collapsed `//`; never treated path segments as stack entries, so `.` / `..` / `...` were unreachable. Cold 2026-10-27: segmentation landed (split on `/`, empty parts skipped), but `.` and `..` were still bucketed together as skip — `..` never popped — so every `..` case failed and root came out `""` instead of `/`. Also crashed `stack[-1]` on the empty stack for `/` and `/../`. Asked for the index-error explanation, then the shell-`cd` model, then stopped and took the course copy. | 2026-11-03 | RECURRED |
+| 20 | 2026-10-28 | Make The String Great | Stacks | Passed the five cases, but the pop condition came out of trial-and-error at the keyboard — ran and printed until they went green — and couldn't say why one pass is enough once the top is popped. The stack-as-reduced-prefix invariant wasn't there, only a case check that happened to be right. | 2026-11-04 | OPEN |
 | | | | | | | |
 | | | | | | | |
 | | | | | | | |
@@ -119,7 +124,7 @@ on a given day without reading prose.
 a peek (so not a clean solve) · `FAIL` = couldn't finish, or needed the solution.
 Cold checks only — non-cold rebuilds stay in the row text above.
 
-Tally: **9 clean · 5 hint-assisted · 11 failed** (25 runs).
+Tally: **10 clean · 5 hint-assisted · 11 failed** (26 runs).
 
 | Date | # | Problem | Run | Note |
 |---|---|---|---|---|
@@ -148,6 +153,7 @@ Tally: **9 clean · 5 hint-assisted · 11 failed** (25 runs).
 | 2026-10-26 | 15 | Remove Duplicates from Sorted List | PASS | clean cold solve; skip duplicate nodes by relinking `curr.next`, advance only when values differ |
 | 2026-10-26 | 14 | Subarray Sum Equals K | FAIL | after a hint, couldn't finish the prefix-sum frequency-map logic; took the existing course solution |
 | 2026-10-27 | 19 | Simplify Path | FAIL | segmented correctly, but `..` was skipped instead of popping and root returned `""`; needed the index-error fix and the `cd` model, then took the course copy |
+| 2026-10-28 | 19 | Simplify Path | PASS | clean cold solve; segments as stack entries, `..` pops behind an empty-stack guard, join with a leading `/` |
 
 ---
 
@@ -178,6 +184,13 @@ Move a row here once it's `PASSED`. Keep them — the tally is your progress mea
 | 11 | Largest Unique Number | Hashing | 2026-09-29 | 2026-10-09 | Cold revisit passed; count frequencies, then scan all values keeping the largest with count 1. Needed two nudges: `best = (best, num)` built a tuple instead of a running max, and the loop variable shadowed the dict name `count`. |
 | 12 | Maximum Number of Balloons | Hashing | 2026-09-29 | 2026-10-12 | Cold revisit passed (~15 min): halved `l`/`o` this time and let the absent letters read 0 off the `defaultdict`. Needed one correction first — a `freq["s"]` term dragged every case to 0; `balloon` has no `s`. Left over: a no-op `text.lower()`. |
 | 15 | Remove Duplicates from Sorted List | Linked lists | 2026-10-07 | 2026-10-26 | Cold revisit passed cleanly; remove adjacent duplicates by relinking and keep the current node in place until the next value differs. |
+| 19 | Simplify Path | Stacks | 2026-10-21 | 2026-10-28 | Cold revisit passed cleanly, well inside the 20-min cap, no hints and nothing opened. Split on `/` and treat the result as the stack worklist: skip `''` and `.`, pop for `..` (guarded on a non-empty stack, which is what keeps `/../` at root), push everything else, then join with a leading `/` so root renders as `/` rather than `""`. Covered the three examples plus `/../..//a`, `/a/../../b`, `/.../a/../b/c/../d/./`, `/` and `/a/./b/../../c/`. |
+
+**Scheduled re-checks** — self-requested, on top of the `PASSED` status:
+
+| Re-check due | # | Problem | Why |
+|---|---|---|---|
+| 2026-11-04 | 19 | Simplify Path | Confirmation cold run a week after the 10-28 pass, to check it stuck |
 
 ---
 

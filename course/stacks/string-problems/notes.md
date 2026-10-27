@@ -87,6 +87,7 @@ All three: O(n) time (each char pushed/popped at most once), O(n) space for the 
 - Popping on an empty stack (lone closer, leading `#`, or more `#`s than letters) — always check `if stack`.
 - For brackets: mapping the wrong way (closer → opener) or forgetting to require an **empty** stack at the end (`"(){"` looks fine until the leftover `{`).
 - Thinking adjacent-dupe deletions must be found with nested scans — the stack makes “became adjacent later” automatic.
+- Matching the pop rule without the invariant: **the stack already holds the reduced form of the prefix**, so a new char can only pair with the top, and after a pop nothing below needs re-checking — that older pair was already good. This is why one pass suffices; if you can’t say that sentence, you’ve pattern-matched, not understood (1544 Make The String Great is the same move with a case check).
 - Comparing backspace strings by index without simulating — `#` does not line up positionally across `s` and `t`.
 
 ## Tiny example

@@ -39,6 +39,9 @@ arrays-and-strings/
   two-pointers/
   sliding-window/
 hashing/
+stacks/
+  string-problems/
+queues/
 ```
 
 Per chapter:

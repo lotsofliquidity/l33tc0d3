@@ -38,6 +38,8 @@ Cmd-click a link to open the file.
 | Count Number of Nice Subarrays | [count-number-of-nice-subarrays.py](course/hashing/counting/examples/count-number-of-nice-subarrays.py) |
 | Valid Parentheses | [valid-parentheses.py](course/stacks/string-problems/examples/valid-parentheses.py) |
 | Simplify Path | [simplify-path.py](course/stacks/string-problems/examples/simplify-path.py) |
+| Make The String Great | [make-the-string-great.py](course/stacks/string-problems/examples/make-the-string-great.py) |
+| Number of Recent Calls | [recent-counter.py](course/queues/examples/recent-counter.py) |
 
 ## Exercise solutions
 
