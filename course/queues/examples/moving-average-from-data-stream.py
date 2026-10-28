@@ -1,20 +1,27 @@
 """
 Problem: Moving Average from Data Stream (LeetCode 346)
 Chapter: Queues
+Source: session solution (2026-10-29 — practice attempt stalled at ~1 hour).
 
-Given a stream of integers and a window size, return the moving average of the
-last `size` values seen. `next(val)` appends `val` to the stream and returns the
-average of everything currently inside the window (fewer than `size` values
-early on, so divide by how many you actually hold).
+Companion file: course/queues/practice/2026-10-29-MovingAverageFromDataStream.py
 """
 
+from collections import deque
 
 class MovingAverage:
     def __init__(self, size: int):
-        pass
+        self.queue = deque()
+        self.size = size
+        self.total = 0
 
     def next(self, val: int) -> float:
-        pass
+        self.queue.append(val)
+        self.total += val
+
+        if len(self.queue) > self.size:
+            self.total -= self.queue.popleft()
+
+        return self.total / len(self.queue)
 
 
 if __name__ == "__main__":
