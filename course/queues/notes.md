@@ -70,4 +70,4 @@ Plain FIFO: `append(1), append(2), append(3)` → `popleft()` gives `1, 2, 3`.
 ## Related
 - Stacks: [../stacks/notes.md](../stacks/notes.md) — same "collection of pending work", opposite end rule (LIFO vs FIFO).
 - BFS in trees & graphs — queues exist mostly to power it.
-- Monotonic (next chapter) — applies to both stacks and queues.
+- Monotonic ([../monotonic/notes.md](../monotonic/notes.md)) — applies to both stacks and queues.

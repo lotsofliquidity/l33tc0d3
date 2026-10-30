@@ -40,6 +40,9 @@ Cmd-click a link to open the file.
 | Simplify Path | [simplify-path.py](course/stacks/string-problems/examples/simplify-path.py) |
 | Make The String Great | [make-the-string-great.py](course/stacks/string-problems/examples/make-the-string-great.py) |
 | Number of Recent Calls | [recent-counter.py](course/queues/examples/recent-counter.py) |
+| Daily Temperatures | [daily-temperatures.py](course/monotonic/examples/daily-temperatures.py) |
+| Sliding Window Maximum | [sliding-window-maximum.py](course/monotonic/examples/sliding-window-maximum.py) |
+| Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit | [longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit.py](course/monotonic/examples/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit.py) |
 
 ## Exercise solutions
 

@@ -42,6 +42,7 @@ hashing/
 stacks/
   string-problems/
 queues/
+monotonic/
 ```
 
 Per chapter:
