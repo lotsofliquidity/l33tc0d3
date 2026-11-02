@@ -51,19 +51,49 @@ for num in nums:
     stack.append(num)
 ```
 
-Sliding-window (deque of **indices**), three steps per `i`:
+### Same invariant, different job
+
+The shared idea is to keep only candidates that could still matter; a newer
+element removes older candidates it dominates. What changes is when the answer
+is available:
+
+- **Next greater / Daily Temperatures:** the stack holds earlier items still
+  waiting for an answer. The current item answers the ones it pops, so write
+  their answers during the pop.
+- **Previous greater / Previous Warmer Day:** before answering for the current
+  item, pop candidates that are not greater. The remaining top is its nearest
+  previous answer; the pops only discard candidates and do not write answers.
+- **Sliding-window maximum:** a deque holds candidates for the active window.
+  Remove dominated candidates from the back and expired indices from the front;
+  the front gives the window answer.
+
+So the pruning principle is shared, but the stack/deque contents, pop meaning,
+and moment you read or write an answer depend on the question.
+
+Sliding-window deque (commonly storing **indices**), three steps per `i`:
 1. **Expire** the front if it left the window: `while dq and dq[0] <= i - k: dq.popleft()`
 2. **Evict** useless back entries: for a window max, `while dq and nums[dq[-1]] <= nums[i]: dq.pop()`
 3. **Push** `i`, then read the answer off the front: `nums[dq[0]]`.
 
-Indices not values, because you must know *when* the extreme falls out of the window. The article writes the expiry as `if dq[0] + k == i` (equivalently `dq[0] == i - k`) — an `if`, not a `while`, because only one index can age out per step. `while dq[0] <= i - k` is the same guard written defensively.
+Indices make expiration explicit: you can tell exactly when the front has left
+the window. The article's Sliding Window Maximum writes expiry as
+`if dq[0] + k == i` (equivalently `dq[0] == i - k`) — an `if`, because only
+one index ages out per step. `while dq[0] <= i - k` is the same guard written
+defensively.
+
+The article's Longest Continuous Subarray example instead stores **values**.
+That works there because it checks the value leaving the window against each
+deque's front and removes the front on equality. Its back-pop comparisons are
+strict (`>` / `<`), so equal candidates are retained in arrival order; this
+lets the outgoing equal value expire the oldest matching candidate. Storing
+indices is another valid approach and makes that correspondence explicit.
 
 ## Complexity
 - Time: **O(n) amortised** — the nested `while` looks quadratic, but each element is pushed once and popped at most once.
 - Space: **O(n)** for a plain stack; **O(k)** for a monotonic deque over a window of size `k`.
 
 ## Pitfalls
-- **Storing values instead of indices.** Fine for "next greater value", fatal for "how many days until" and for any window problem — you lose the position, so you can't compute a distance or know what expired.
+- **Forgetting what the stored item must tell you.** Next-greater *distances* need indices. Sliding-window deques can store indices, or—in the article's Longest Continuous Subarray implementation—values with an equality check against the outgoing value.
 - **Inverted direction.** Keep a *decreasing* stack when hunting for the next *greater* element (the top is the smallest unresolved value, waiting for something bigger). Get it backwards and nothing ever pops.
 - **Reading the front before expiring.** Evict out-of-window indices first, otherwise the stale max/front is returned.
 - **Using one deque for both max and min.** Example 3 needs *two* — one non-increasing, one non-decreasing.

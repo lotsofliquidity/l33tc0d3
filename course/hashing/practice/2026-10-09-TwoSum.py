@@ -30,10 +30,32 @@ Constraints:
   Only one valid answer exists.
 """
 
+from collections import defaultdict
+
+#Example 2:
+#  Input: nums = [4,5,6], target = 10
+#  Output: [0,2]
 
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        pass
+        # for left in range(len(nums)):
+        #     # 4
+        #     for right in range(left + 1, len(nums)):
+        #         # 5
+        #         # 6 
+        #         if nums[left] + nums[right] == target:
+        #             return [left, right]
+
+        dic = defaultdict(int)
+        for i in range(len(nums)):
+            # 7 - 3
+            complement = target - nums[i]
+            # 4
+            if complement in dic:
+                return[dic[complement], i]
+
+            dic[nums[i]] = i
+            #{number: index}
  
 
 if __name__ == "__main__":
