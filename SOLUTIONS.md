@@ -72,3 +72,4 @@ Written with you in a session, kept in `course/<chapter>/examples/` under the pr
 | Reverse Linked List II | 2026-10-20 | [reverse-linked-list-ii.py](course/linked-lists/reversing-a-linked-list/examples/reverse-linked-list-ii.py) |
 | Reverse Linked List II (recursive) | 2026-10-20 | [reverse-linked-list-ii-recursive.py](course/linked-lists/reversing-a-linked-list/examples/reverse-linked-list-ii-recursive.py) |
 | Moving Average from Data Stream | 2026-10-29 | [moving-average-from-data-stream.py](course/queues/examples/moving-average-from-data-stream.py) |
+| Previous Warmer Day (739 variant) | 2026-11-02 | [previous-warmer-day.py](course/monotonic/examples/previous-warmer-day.py) |
