@@ -58,6 +58,22 @@ class Solution:
 
 Time O(n), space O(n): stack ops are O(1); the stack can grow to the input length.
 
+### Make The String Great (1544)
+Same reduce-the-prefix move as 1047, with a case-insensitive pair test.
+
+**Say the condition in words first:** "same letter, *different* case." That is one boolean, not three:
+
+```python
+stack[-1] == c.swapcase()     # same as: c != stack[-1] and c.lower() == stack[-1].lower()
+```
+
+**Invariant (say it exactly):** after every step, `stack == reduce(s[:i+1])` — the stack is the **fully reduced form of the prefix**, not "the characters I've seen so far". Two things follow:
+
+1. Every pair already *inside* the stack is non-cancelable, so an arriving `c` can only ever form a new pair with `stack[-1]` — never with anything deeper. Hence top-only comparison.
+2. If `(stack[-1], c)` cancels, popping exposes a pair that was **already checked and survived**. That is why one `if` and **no `while`**: a pop never creates a fresh adjacency.
+
+A `while` loop would answer a different question ("is there any cancelable pair left anywhere?") and merely hides the bug.
+
 ### Backspace String Compare (844)
 **Recognition key:** a backspace deletes the character that was typed most recently — again LIFO. Simulate typing with a stack, then compare the two results.
 
@@ -103,6 +119,19 @@ All three: O(n) time (each char pushed/popped at most once), O(n) space for the 
 | `a` | `[c, a]` |
 
 Answer: `"ca"`. Deleting `bb` exposed `aa`; LIFO handled the cascade.
+
+`s = "abBAcC"` (1544), traced with the invariant checked at every row:
+
+| i | `c` | stack before | `c.lower() == top.lower()`? | `c != top`? | action | stack after | `reduce(s[:i+1])` |
+|---|---|---|---|---|---|---|---|
+| 0 | `a` | `[]` | — | — | push | `[a]` | `"a"` ✓ |
+| 1 | `b` | `[a]` | no | — | push | `[a, b]` | `"ab"` ✓ |
+| 2 | `B` | `[a, b]` | yes | yes | pop | `[a]` | `"a"` ✓ (`bB`) |
+| 3 | `A` | `[a]` | yes | yes | pop | `[]` | `""` ✓ (`aA`) |
+| 4 | `c` | `[]` | — | — | push | `[c]` | `"c"` ✓ |
+| 5 | `C` | `[c]` | yes | yes | pop | `[]` | `""` ✓ |
+
+Row 3 is the one to point at when defending the design: `a` and `A` were **not** adjacent when `a` was pushed (i=0). `bB` had to die first. That is the cascade, and the stack gets it for free.
 
 ### Simplify Path (71)
 **Recognition key:** the path is a stack of *directory names*, not of characters. `..` pops the most recent directory (LIFO); `.` and empty segments (from `//`) are no-ops; `...` is a real name and gets pushed.

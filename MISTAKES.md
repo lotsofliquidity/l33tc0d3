@@ -92,7 +92,7 @@ Note what is **not** in there: the correct solution. Checked answers are indexed
 
 | # | Date logged | Problem | Chapter | Went wrong | Revisit due | Status |
 |---|---|---|---|---|---|---|
-| 4 | 2026-09-20 | K Radius Subarray Averages | Prefix sum | Couldn't finish the centered window. Cold 2026-09-28: built the prefix, then couldn't say which slice each center averages. Cold 2026-10-08: had the valid centers (`range(k, n-k)`) right, but appended to an already-full `[-1] * n` list, divided each element by `k` instead of the window sum by `2k+1`, and added a `k < nums` guard that crashed. | 2026-10-15 | RECURRED |
+| 4 | 2026-09-20 | K Radius Subarray Averages | Prefix sum | Couldn't finish the centered window. Cold 2026-09-28: built the prefix, then couldn't say which slice each center averages. Cold 2026-10-08: had the valid centers (`range(k, n-k)`) right, but appended to an already-full `[-1] * n` list, divided each element by `k` instead of the window sum by `2k+1`, and added a `k < nums` guard that crashed. Cold 2026-11-04: started the prefix setup but couldn't complete the window-sum/output loop before the cap. | 2026-11-11 | RECURRED |
 | 10 | 2026-09-28 | Find Players With Zero or One Losses | Hashing | Needed a walkthrough — counted the match/win instead of losses, and did not keep 0 as a real count. Cold 2026-10-09: loss counts were right, but the second loop indexed `matches` by position and read `losers[winner]`/`losers[i]` as if a player were a match — kept hitting `TypeError`; needed the solution. Cold 2026-10-17: the second loop and both sorts finally came out right, but the first loop still counted *every* appearance (`count[team1] += 1`), so the zero-loss list was structurally unreachable and exactly-one-loss swallowed winners too — needed the one-line "the map answers losses only" hint. Passed both examples + a 3000-case fuzz after the hint, but ~20 min and hint-assisted, so not a cold solve. Same day, soon move: closed-book re-derive came out clean on the first write (both examples + a 3000-case fuzz, structurally identical to the course copy) — the pattern is close; 2026-10-24 is the measurement. Cold 2026-10-26: correctly recorded zero losses for winners and incremented losses for losers, but tried unpacking the dictionary itself rather than `.items()`; fixed after a nudge. Solution is now correct, but hint-assisted. | 2026-11-02 | RECURRED |
 | 13 | 2026-09-30 | Contiguous Array | Hashing | Couldn't finish. Mapped an index to a contribution instead of a running score to the first index where that score appeared. Cold revisit 2026-10-07: still couldn't derive the `0 → -1` balance idea — read the solution instead of rebuilding it. Cold 2026-10-23: had `balance += 1 / -= 1` and an empty `first` map, but never seeded `first[0] = -1` and never used the map (no length from a repeated balance) — stalled; needed the solution. | 2026-10-30 | RECURRED |
 | 14 | 2026-10-07 | Subarray Sum Equals K | Hashing | Needed the solution after several hints. Never accumulated into the running sum (`curr` stayed 0), and stored the hunted value (`curr - k`) in the map instead of the real running sum — conflating "what I search for" with "what I record". Cold 2026-10-26: after a hint, began accumulating `curr` and looking up `counts[curr-k]`, but couldn't complete the count/update logic or return; needed the solution. | 2026-11-02 | RECURRED |
@@ -103,6 +103,9 @@ Note what is **not** in there: the correct solution. Checked answers are indexed
 | 21 | 2026-10-29 | Moving Average from Data Stream | Queues | Couldn't finish in ~1 hour — needed the solution. Never moved the window state (`total`, count) onto `self`, so every `next()` started from 0; then made the eviction `if/else` own the append, so the incoming value was only enqueued on the branch that didn't evict, and divided by `self.size` once the window filled. The "append once, then evict, then divide by what's held" order never came out. | 2026-11-05 | OPEN |
 | 22 | 2026-11-02 | Daily Temperatures | Monotonic | Passed all three examples (plus edge cases and a 5000-case fuzz) by recalling the article code verbatim, but couldn't defend *why* it works. Pop safety answered as "because they increase" — the invariant, not the reason; indices-vs-values as "that's required for the answer"; the nested `while` as "you're still only going through n elements" — the conclusion without the push-once/pop-once count. Same day, soon move (Previous Warmer Day variant — answer read off the top, not written by a pop): no idea how to start even after two nudges and a backward-scan trace; needed the solution. The recalled 739 lines didn't transfer to a problem that keeps the same structure but moves where the answer comes from. | 2026-11-09 | OPEN |
 | 23 | 2026-11-03 | Two Sum | Hashing | Needed a hint to make seen values the dictionary keys and their indices the values. | 2026-11-10 | OPEN |
+| 24 | 2026-11-05 | Valid Parentheses | Stacks | You lost confidence partway through and said you didn't think you could do it, when you were actually very close. Ride out that moment a bit longer before declaring defeat. | 2026-11-12 | OPEN |
+| 25 | 2026-11-05 | Valid Palindrome | Two pointers | Could not finish the solution, needed repeated hints, and never traced the code to catch the pointer-crossing edge case. | 2026-11-12 | OPEN |
+| 26 | 2026-11-06 | Make The String Great | Stacks | The cancellation condition took many iterations. You kept comparing a character to a boolean, and you overcomplicated the upper/lower test instead of reducing it to one clean check. Passed the cases but couldn't state the invariant (`stack == reduce(s[:i+1])`) or argue why no `while` is needed — the pop never exposes a fresh pair. Revisit should cold-ask for that sentence before the code. | 2026-11-13 | OPEN |
 | | | | | | | |
 | | | | | | | |
 | | | | | | | |
@@ -127,7 +130,7 @@ on a given day without reading prose.
 a peek (so not a clean solve) · `FAIL` = couldn't finish, or needed the solution.
 Cold checks only — non-cold rebuilds stay in the row text above.
 
-Tally: **10 clean · 5 hint-assisted · 11 failed** (26 runs).
+Tally: **10 clean · 5 hint-assisted · 12 failed** (27 runs).
 
 | Date | # | Problem | Run | Note |
 |---|---|---|---|---|
@@ -157,6 +160,7 @@ Tally: **10 clean · 5 hint-assisted · 11 failed** (26 runs).
 | 2026-10-26 | 14 | Subarray Sum Equals K | FAIL | after a hint, couldn't finish the prefix-sum frequency-map logic; took the existing course solution |
 | 2026-10-27 | 19 | Simplify Path | FAIL | segmented correctly, but `..` was skipped instead of popping and root returned `""`; needed the index-error fix and the `cd` model, then took the course copy |
 | 2026-10-28 | 19 | Simplify Path | PASS | clean cold solve; segments as stack entries, `..` pops behind an empty-stack guard, join with a leading `/` |
+| 2026-11-04 | 4 | K Radius Subarray Averages | FAIL | built the prefix setup but couldn't complete the window-sum/output loop before the 20-minute cap |
 
 ---
 

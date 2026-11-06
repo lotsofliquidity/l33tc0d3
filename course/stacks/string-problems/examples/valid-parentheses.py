@@ -16,12 +16,14 @@ class Solution:
         for c in s: # "({})"
             if c in matching: # "})" are not in matching
                 stack.append(c) # open appends the opening brackets
+                print('Opening', c)
             else:
                 if not stack:
                     return False
                 
                 previous_opening = stack.pop()
                 if matching[previous_opening] != c:
+                    print("Closing", matching[previous_opening])
                     return False
  
         return not stack
